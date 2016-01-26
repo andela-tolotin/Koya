@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace Koya;
 
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
@@ -12,7 +12,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'password', 'provider', 'provider_id', 'provider_token', 'avatar',
     ];
 
     /**

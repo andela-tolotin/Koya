@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Jobs;
+namespace Koya\Jobs;
 
 use Illuminate\Bus\Queueable;
 

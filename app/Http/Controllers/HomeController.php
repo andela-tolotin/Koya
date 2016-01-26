@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace Koya\Http\Controllers;
 
-use App\Http\Requests;
+use Koya\Http\Requests;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller

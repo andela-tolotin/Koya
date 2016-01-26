@@ -153,10 +153,10 @@ return [
         /*
          * Application Service Providers...
          */
-        App\Providers\AppServiceProvider::class,
-        App\Providers\AuthServiceProvider::class,
-        App\Providers\EventServiceProvider::class,
-        App\Providers\RouteServiceProvider::class,
+        Koya\Providers\AppServiceProvider::class,
+        Koya\Providers\AuthServiceProvider::class,
+        Koya\Providers\EventServiceProvider::class,
+        Koya\Providers\RouteServiceProvider::class,
 
     ],
 

@@ -11,11 +11,15 @@
 |
 */
 
-$factory->define(App\User::class, function (Faker\Generator $faker) {
+$factory->define(Koya\User::class, function (Faker\Generator $faker) {
     return [
         'name' => $faker->name,
         'email' => $faker->email,
         'password' => bcrypt(str_random(10)),
+        'provider' => $faker->randomElement(['github', 'twitter', 'facebook']),
+        'provider_id' => $faker->uuid,
+        'provider_token' => $faker->uuid,
+        'avatar' => $faker->url,
         'remember_token' => str_random(10),
     ];
 });

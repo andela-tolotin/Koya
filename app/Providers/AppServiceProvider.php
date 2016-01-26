@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Providers;
+namespace Koya\Providers;
 
 use Illuminate\Support\ServiceProvider;
 

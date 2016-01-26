@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Events;
+namespace Koya\Events;
 
 abstract class Event
 {

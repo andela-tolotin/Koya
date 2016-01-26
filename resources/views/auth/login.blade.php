@@ -28,12 +28,7 @@
                     {!! Form::submit('Login', ['class'=>'btn']) !!}
                     {{link_to(url('/password/reset'),'Forgot Your Password?')}}
                 </div>
-
-                <div class="input-field">
-                    {!!  html_entity_decode(link_to(url('#'), '<span class="fa fa-facebook fa-3x"></span>'))!!}
-                    {!!  html_entity_decode(link_to(url('#'), '<span class="fa fa-github fa-3x"></span>'))!!}
-                    {!!  html_entity_decode(link_to(url('#'), '<span class="fa fa-twitter fa-3x"></span>'))!!}
-                </div>
+            @include('auth.partials._socialAuthIcons')
             {!! Form::close()!!}
         </div>
     </div>
