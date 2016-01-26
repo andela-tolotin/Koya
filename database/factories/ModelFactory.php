@@ -15,6 +15,7 @@ $factory->define(Koya\User::class, function (Faker\Generator $faker) {
     return [
         'name' => $faker->name,
         'email' => $faker->email,
+        'username' => $faker->unique()->userName,
         'password' => bcrypt(str_random(10)),
         'provider' => $faker->randomElement(['github', 'twitter', 'facebook']),
         'provider_id' => $faker->uuid,

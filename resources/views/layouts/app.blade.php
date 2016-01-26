@@ -25,11 +25,16 @@
                     <li><a href="{{ url('/login') }}">Login</a></li>
                     <li><a href="{{ url('/register') }}">Register</a></li>
                 @else
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                            {{ Auth::user()->name }} <span class="caret"></span>
+                    <li>
+                        <a data-activates="userMenuBadge" href="#" class="dropdown-button">
+                            {{ Auth::user()->name }}
                         </a>
-                        <ul class="dropdown-menu" role="menu">
+                        <ul class="dropdown-content" id="userMenuBadge">
+                            <li>
+                                <a href="{{ url(Auth::user()->username) }}">
+                                    <i class="fa fa-btn fa-user"></i>Profile
+                                </a>
+                            </li>
                             <li><a href="{{ url('/logout') }}"><i class="fa fa-btn fa-sign-out"></i>Logout</a></li>
                         </ul>
                     </li>
@@ -37,7 +42,9 @@
             </ul>
         </div>
     </nav>
-    @yield('content')
+    <div class="container">
+        @yield('content')
+    </div>
     <!-- JavaScripts -->
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
@@ -45,7 +52,9 @@
 
     <!-- Compiled and minified JavaScript -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/js/materialize.min.js"></script>
-
+    <script type="text/javascript">
+        $(".dropdown-button").dropdown();
+    </script>
 
 </body>
 </html>

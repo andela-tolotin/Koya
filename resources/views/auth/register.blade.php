@@ -6,20 +6,7 @@
         <div class="col m8 offset-m2">
             {!! Form::open(['url'=>url('/register')]) !!}
                 {!! csrf_field() !!}
-                <div class="input-field">
-                    {!! Form::label('name', 'Name')!!}
-                    {!! Form::text('name', old('name'))!!}
-                    @if($errors->has('name'))
-                        <span class="red-text">{{$errors->first('name')}}</span>
-                    @endif
-                </div>
-                <div class="input-field">
-                    {!! Form::label('email', 'Email Address') !!}
-                    {!! Form::text('email', old('email')) !!}
-                    @if($errors->has('email'))
-                        <span class="red-text">{{$errors->first('email')}}</span>
-                    @endif
-                </div>
+                @include('partials.forms._profile')
                 <div class="input-field">
                     {!! Form::label('password', 'Password') !!}
                     {!! Form::password('password') !!}
@@ -38,7 +25,6 @@
                 <div class="input-field">
                     {!! Form::submit('Register', ['class'=>'btn']) !!}
                 </div>
-
                 @include('auth.partials._socialAuthIcons')
             {!! Form::close() !!}
         </div>

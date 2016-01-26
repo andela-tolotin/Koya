@@ -2,6 +2,7 @@
 
 namespace Koya\Http\Controllers\Auth;
 
+use Carbon\Carbon;
 use Illuminate\Contracts\Auth\Guard;
 use Illuminate\Http\Request;
 
@@ -50,6 +51,7 @@ class SocialAuthController extends Controller
     {
         $data = [
             'name'           => $user->name,
+            'username' => str_replace(' ', '.', strtolower($user->name)).".".time(),
             'email'          => $user->email,
             'password'       => null,
             'provider'       => $provider,

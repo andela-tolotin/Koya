@@ -11,9 +11,6 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
 
 /*
 |--------------------------------------------------------------------------
@@ -27,9 +24,19 @@ Route::get('/', function () {
 */
 
 Route::group(['middleware' => 'web'], function () {
+
+    Route::get('/', function () {
+        return view('welcome');
+    });
     Route::auth();
     Route::get('{provider}/authorize', 'Auth\SocialAuthController@authorizeProvider');
     Route::get('{provider}/login', 'Auth\SocialAuthController@login');
     Route::get('/home', 'HomeController@index');
 
+    //Routes for accessing users
+    Route::group(['middleware' => 'user'], function() {
+        Route::get('/{route_username}/', 'UsersController@show');
+        Route::get('/{route_username}/edit', 'UsersController@edit');
+        Route::put('/{route_username}/edit', 'UsersController@update');
+    });
 });

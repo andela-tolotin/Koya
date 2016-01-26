@@ -17,6 +17,12 @@ class UserRepository
     {
         return $this->user->all();
     }
+
+    public function getUserByUsername($username)
+    {
+        return $this->user->where('username', $username)->get()->first();
+    }
+
     public function getByProviderId($provider_id)
     {
         return $this->user->where('provider_id', $provider_id)->get()->first();
