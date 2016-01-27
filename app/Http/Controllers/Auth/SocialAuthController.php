@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use Auth;
 use Koya\Http\Requests;
 use Koya\Http\Controllers\Controller;
+use Koya\Libraries\Cloudinary;
 use Koya\Repositories\UserRepository;
 use Socialite;
 
@@ -18,10 +19,11 @@ class SocialAuthController extends Controller
      * SocialAuthController constructor.
      * @param UserRepository $user
      */
-    public function __construct(UserRepository $user, Guard $guard)
+    public function __construct(UserRepository $user, Guard $guard, Cloudinary $cloudinary)
     {
         $this->user = $user;
         $this->guard = $guard;
+        $this->cloudinary = $cloudinary;
     }
 
     /**
@@ -49,6 +51,9 @@ class SocialAuthController extends Controller
 
     private function prepareUserData($user, $provider)
     {
+        $avatar_url = $provider == 'github' ? $user->avatar : $user->avatar_original;
+        $cloudinary_data = $this->cloudinary->upload($avatar_url);
+
         $data = [
             'name'           => $user->name,
             'username' => str_replace(' ', '.', strtolower($user->name)).".".time(),
@@ -57,8 +62,10 @@ class SocialAuthController extends Controller
             'provider'       => $provider,
             'provider_id'    => $user->id,
             'provider_token' => $user->token,
-            'avatar'         => $provider == 'github' ? $user->avatar : $user->avatar_original,
+            'avatar'         => $cloudinary_data['url'],
+            'cloudinary_id'         => $cloudinary_data['public_id']
         ];
+
         return $data;
     }
 }

@@ -36,12 +36,24 @@ class UserRepository
         }
         return $user;
     }
-    public function save($data)
+    public function create($data)
     {
         try {
             $this->user->create($data);
         } catch (Exception $ex) {
-            throw new \Exception('Error saving to database');
+           abort(500);
         }
+    }
+
+    public function update($data, $username)
+    {
+        try{
+            $user = $this->getUserByUsername($username);
+            $user->update($data);
+        } catch(Exception $ex) {
+            abort(500);
+        }
+
+        return true;
     }
 }

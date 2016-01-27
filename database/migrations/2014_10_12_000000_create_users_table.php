@@ -21,6 +21,7 @@ class CreateUsersTable extends Migration
             $table->string('provider')->nullable()->default('traditional');
             $table->string('provider_id')->nullable();
             $table->string('provider_token')->nullable();
+            $table->string('cloudinary_id')->nullable();
             $table->string('avatar')->nullable();
             $table->rememberToken();
             $table->timestamps();

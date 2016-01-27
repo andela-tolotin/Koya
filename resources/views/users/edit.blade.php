@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    {!! Form::model(Auth::user(), [url(Auth::user()->username.'/edit'), "file"=>true, 'method' => 'PUT']) !!}
+    {!! Form::model(Auth::user(), [url(Auth::user()->username.'/edit'), 'enctype'=>'multipart/form-data', 'file'=>true, 'method' => 'PUT']) !!}
         <div class="input-field">
             {!! Form::file('image', ['name'=>'avatar']) !!}
             @if($errors->has('avatar'))
