@@ -29,7 +29,7 @@ $factory->define(Koya\Video::class, function(Faker\Generator $faker){
     return [
         'title' => $faker->city,
         'link' => $faker->domainName,
-        'user_id' => $faker->numberBetween(1, 50),
+        'user_id' => $faker->numberBetween(1, 20),
         'description' => $faker->sentence(40)
     ];
 });
