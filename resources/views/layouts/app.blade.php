@@ -11,6 +11,7 @@
     <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <!-- Styles -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/css/materialize.min.css">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/animate.css/3.2.0/animate.min.css">
 
 </head>
 <body id="app-layout">
@@ -31,11 +32,14 @@
                         </a>
                         <ul class="dropdown-content" id="userMenuBadge">
                             <li>
+                                <a href="{{ url('/dashboard') }}"> <i class="fa fa-circle-o-notch"></i>Dashboard</a>
+                            </li>
+                            <li>
                                 <a href="{{ url(Auth::user()->username) }}">
-                                    <i class="fa fa-btn fa-user"></i>Profile
+                                    <i class="fa fa-qrcode"></i> Profile
                                 </a>
                             </li>
-                            <li><a href="{{ url('/logout') }}"><i class="fa fa-btn fa-sign-out"></i>Logout</a></li>
+                            <li><a href="{{ url('/logout') }}"><i class="fa fa-sign-out"></i> Logout</a></li>
                         </ul>
                     </li>
                 @endif
@@ -52,9 +56,10 @@
 
     <!-- Compiled and minified JavaScript -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/js/materialize.min.js"></script>
+    <script src="{!! URL::asset('js/modal.min.js') !!}"></script>
     <script type="text/javascript">
         $(".dropdown-button").dropdown();
     </script>
-
+    @yield('custom-scripts')
 </body>
 </html>

@@ -34,9 +34,10 @@ Route::group(['middleware' => 'web'], function () {
     Route::get('/home', 'HomeController@index');
 
     //Routes for accessing users
+    Route::get('dashboard', 'UsersController@dashboard');
     Route::group(['middleware' => 'user'], function() {
-        Route::get('/{route_username}/', 'UsersController@show');
         Route::get('/{route_username}/edit', 'UsersController@edit');
         Route::put('/{route_username}/edit', 'UsersController@update');
     });
+    Route::get('/{route_username}/', 'UsersController@show');
 });

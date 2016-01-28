@@ -44,4 +44,10 @@ class UsersController extends Controller
 
         return redirect($data['username'].'/');
     }
+
+
+    public function dashboard()
+    {
+        return view('users.dashboard');
+    }
 }
