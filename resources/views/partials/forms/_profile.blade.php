@@ -20,3 +20,7 @@
         <span class="red-text">{{$errors->first('username')}}</span>
     @endif
 </div>
+
+<div class="input-field">
+    {!! Form::select('category') !!}
+</div>

@@ -33,8 +33,11 @@ Route::group(['middleware' => 'web'], function () {
     Route::get('{provider}/login', 'Auth\SocialAuthController@login');
     Route::get('/home', 'HomeController@index');
 
+    Route::group(['middleware' => 'user_logged_in'], function(){
+        Route::get('dashboard', 'UsersController@dashboard');
+        Route::post('videos', 'VideosController@create');
+    });
     //Routes for accessing users
-    Route::get('dashboard', 'UsersController@dashboard');
     Route::group(['middleware' => 'user'], function() {
         Route::get('/{route_username}/edit', 'UsersController@edit');
         Route::put('/{route_username}/edit', 'UsersController@update');

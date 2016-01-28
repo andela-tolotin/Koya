@@ -4,21 +4,42 @@
     </div>
 
     <div class="modal-content">
+
         {!! Form::open(['url'=>'/videos/']) !!}
             <div class="input-field">
                 <i class="fa fa-link prefix"></i>
-                {!! Form::text('video-link') !!}
-                <label for="video-link"> Video Link</label>
+                {!! Form::text('link') !!}
+                <label for="link"> Video Link</label>
+                @if($errors->has('link'))
+                    <span class="red-text">{{$errors->first('link')}}</span>
+                @endif
             </div>
             <div class="input-field">
-                <i class="fa fa-video-camera prefix"></i>
-                {!! Form::text('video-title') !!}
-                <label for="video-title"> Video Link</label>
+                <i class="fa fa-film prefix"></i>
+                {!! Form::text('title') !!}
+                <label for="video-title"> Video Title</label>
+                @if($errors->has('title'))
+                    <span class="red-text">{{$errors->first('title')}}</span>
+                @endif
             </div>
             <div class="input-field">
                 <i class="fa fa-info prefix"></i>
-                {!! Form::textarea('video-description') !!}
-                <label for="video-description"> Description</label>
+                {!! Form::textarea('description', null, ['class' => 'materialize_textarea', 'id' => 'description_textarea']) !!}
+                <label for="description"> Description</label>
+                @if($errors->has('description'))
+                    <span class="red-text">{{$errors->first('description')}}</span>
+                @endif
+            </div>
+            <div class="input-field">
+                <i class="fa fa-tag"></i>
+                {!! Form::select('tags[]', $tags, null, ['multiple' => 'multiple'])!!}
+                <label for="video-description"> Tag</label>
+                @if($errors->has('tags'))
+                    <span class="red-text">{{$errors->first('tags')}}</span>
+                @endif
+            </div>
+            <div class="input-field">
+                {!! Form::submit('Save', ['class'=>'btn btn-submit']) !!}
             </div>
         {!! Form::close() !!}
     </div>

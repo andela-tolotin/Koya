@@ -24,3 +24,21 @@ $factory->define(Koya\User::class, function (Faker\Generator $faker) {
         'remember_token' => str_random(10),
     ];
 });
+
+$factory->define(Koya\Video::class, function(Faker\Generator $faker){
+    return [
+        'title' => $faker->city,
+        'link' => $faker->domainName,
+        'user_id' => $faker->numberBetween(1, 50),
+        'description' => $faker->sentence(40)
+    ];
+});
+
+
+$factory->define(Koya\VideoTag::class, function(Faker\Generator $faker){
+    return [
+        'label' => $faker->unique()->randomElement([
+            'java', 'php', 'python', 'javascript', 'java', 'physics', 'c#', 'painting', 'Brain FK'
+        ])
+    ];
+});
