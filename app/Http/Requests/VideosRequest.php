@@ -24,10 +24,10 @@ class VideosRequest extends Request
     public function rules()
     {
         return [
-            'link' => 'required',
-            'title' => 'required',
-            'description' => 'required',
-            'tags' => 'required',
+            'link' => array('required'),
+            'title' => array('required'),
+            'description' => array('required'),
+            'tags' => array('required'),
         ];
     }
 }

@@ -149,8 +149,8 @@ return [
         Illuminate\View\ViewServiceProvider::class,
         Collective\Html\HtmlServiceProvider::class,
         Laravel\Socialite\SocialiteServiceProvider::class,
-        JD\Cloudder\CloudderServiceProvider::class,
         UxWeb\SweetAlert\SweetAlertServiceProvider::class,
+        Alaouy\Youtube\YoutubeServiceProvider::class,
         /*
          * Application Service Providers...
          */
@@ -207,7 +207,6 @@ return [
         'HTML'      => Collective\Html\HtmlFacade::class,
         'Form'      => Collective\Html\FormFacade::class,
         'Socialite' => Laravel\Socialite\Facades\Socialite::class,
-        'Cloudder'  => JD\Cloudder\Facades\Cloudder::class,
         'Alert' => UxWeb\SweetAlert\SweetAlert::class,
     ],
 

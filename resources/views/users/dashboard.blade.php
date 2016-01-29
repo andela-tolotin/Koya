@@ -1,20 +1,34 @@
 @extends('layouts.app')
 
 @section('content')
+    <script data-cfasync="false">
+        (function(r,e,E,m,b){E[r]=E[r]||{};E[r][b]=E[r][b]||function(){
+                    (E[r].q=E[r].q||[]).push(arguments)};b=m.getElementsByTagName(e)[0];m=m.createElement(e);
+            m.async=1;m.src=("file:"==location.protocol?"https:":"")+"//s.reembed.com/G-AoyGGn.js";
+            b.parentNode.insertBefore(m,b)})("reEmbed","script",window,document,"api");
+    </script>
 
     @if(count($videos) > 0)
     <ul>
         {{link_to('#add-video-modal','Add Video', ['id' => 'add-video-modal-trigger'])}}
         @foreach($videos as $video)
             <li>
+                <iframe width="560" height="315" src="https://www.youtube.com/embed/{{$video->link}}" frameborder="0" allowfullscreen>
+                </iframe>
                 <a href="#">
-                    {{$video->link}}<br/>
                     {{$video->title}}<br/>
                     {{$video->user->name}}
                 </a>
                 <p>
                     {{$video->description}}
                 </p>
+                <span>
+                    <a href="#like"><i class="fa fa-heart-o"></i> [4] </a>
+                    <a href="{{url('videos/'.$video->id.'/edit/')}}"><i class="fa fa-pencil"></i></a>
+                    {{Form::open(['url'=>['videos/'.$video->id.'/delete'], 'method'=>'delete'])}}
+                        <button type="submit" ><i class="fa fa-trash-o"></i></button>
+                    {{Form::close()}}
+                </span>
             </li>
         @endforeach
     </ul>

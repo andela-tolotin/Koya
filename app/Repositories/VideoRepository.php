@@ -25,6 +25,24 @@ class VideoRepository
         return $this->video->all();
     }
 
+    public function getVideoUrl($url)
+    {
+        $value = 'error';
+        if (preg_match('/youtube\.com\/watch\?v=([^\&\?\/]+)/', $url, $id)) {
+            $value = $id[1];
+        } else if (preg_match('/youtube\.com\/embed\/([^\&\?\/]+)/', $url, $id)) {
+            $value = $id[1];
+        } else if (preg_match('/youtube\.com\/v\/([^\&\?\/]+)/', $url, $id)) {
+            $value = $id[1];
+        } else if (preg_match('/youtu\.be\/([^\&\?\/]+)/', $url, $id)) {
+            $value = $id[1];
+        }
+        else if (preg_match('/youtube\.com\/verify_age\?next_url=\/watch%3Fv%3D([^\&\?\/]+)/', $url, $id)) {
+            $value = $id[1];
+        }
+        return $value;
+    }
+
     public function getAllTags()
     {
         return $this->videoTag->all();
@@ -51,5 +69,10 @@ class VideoRepository
         $video_data['user_id'] = $user_id;
         $video = $this->video->create($video_data);
         return $video->tags()->sync(array_values($tags));
+    }
+
+    public function deleteVideo($video_id)
+    {
+        return $this->video->destroy($video_id);
     }
 }

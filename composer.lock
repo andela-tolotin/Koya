@@ -4,9 +4,55 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "930a4667a7fa8a488bd871fd16cdca56",
-    "content-hash": "1ff8e8b09e06f445f47f21aaba77521b",
+    "hash": "b304b1b36e031ba576999ab153079fed",
+    "content-hash": "12a54151c9acc559b4c3b629d8fdc6c7",
     "packages": [
+        {
+            "name": "alaouy/youtube",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/alaouy/Youtube.git",
+                "reference": "96acf8ae9033b5cbace9765bc72aff66f0ba2bd2"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/alaouy/Youtube/zipball/96acf8ae9033b5cbace9765bc72aff66f0ba2bd2",
+                "reference": "96acf8ae9033b5cbace9765bc72aff66f0ba2bd2",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "3.7.*@stable"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "Alaouy\\Youtube\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Mustapha Alaouy",
+                    "email": "alaouym@gmail.com"
+                }
+            ],
+            "description": "Laravel PHP Facade/Wrapper for the Youtube Data API v3",
+            "keywords": [
+                "alaouy",
+                "api",
+                "laravel",
+                "video",
+                "youtube"
+            ],
+            "time": "2015-12-28 20:46:30"
+        },
         {
             "name": "classpreloader/classpreloader",
             "version": "3.0.0",
@@ -63,16 +109,16 @@
         },
         {
             "name": "cloudinary/cloudinary_php",
-            "version": "1.2.0",
+            "version": "1.3.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/cloudinary/cloudinary_php.git",
-                "reference": "b8dff83e64419630cab8b37e0a1bcd39da5dee08"
+                "reference": "3d82f544d6fd8e4135ab9712093840d20cec5bac"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/cloudinary/cloudinary_php/zipball/b8dff83e64419630cab8b37e0a1bcd39da5dee08",
-                "reference": "b8dff83e64419630cab8b37e0a1bcd39da5dee08",
+                "url": "https://api.github.com/repos/cloudinary/cloudinary_php/zipball/3d82f544d6fd8e4135ab9712093840d20cec5bac",
+                "reference": "3d82f544d6fd8e4135ab9712093840d20cec5bac",
                 "shasum": ""
             },
             "require": {
@@ -111,7 +157,7 @@
                 "image management",
                 "sdk"
             ],
-            "time": "2015-11-01 13:43:31"
+            "time": "2016-01-28 13:48:02"
         },
         {
             "name": "dnoegel/php-xdg-base-dir",
@@ -623,16 +669,16 @@
         },
         {
             "name": "laravel/framework",
-            "version": "v5.2.11",
+            "version": "v5.2.12",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/framework.git",
-                "reference": "e8ad411ac3ca63f532952417156e32d010fcc522"
+                "reference": "6b6255ad7bfbdb721b8d00b09d52b146c5d363d7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/framework/zipball/e8ad411ac3ca63f532952417156e32d010fcc522",
-                "reference": "e8ad411ac3ca63f532952417156e32d010fcc522",
+                "url": "https://api.github.com/repos/laravel/framework/zipball/6b6255ad7bfbdb721b8d00b09d52b146c5d363d7",
+                "reference": "6b6255ad7bfbdb721b8d00b09d52b146c5d363d7",
                 "shasum": ""
             },
             "require": {
@@ -747,7 +793,7 @@
                 "framework",
                 "laravel"
             ],
-            "time": "2016-01-22 18:36:05"
+            "time": "2016-01-26 04:15:37"
         },
         {
             "name": "laravel/socialite",
@@ -805,16 +851,16 @@
         },
         {
             "name": "laravelcollective/html",
-            "version": "v5.2.3",
+            "version": "v5.2.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/LaravelCollective/html.git",
-                "reference": "7ec0ca55cab54cc6d331007d86ec068b61f46aad"
+                "reference": "3a312d39ffe37da0f57b602618b61fd07c1fcec5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/LaravelCollective/html/zipball/7ec0ca55cab54cc6d331007d86ec068b61f46aad",
-                "reference": "7ec0ca55cab54cc6d331007d86ec068b61f46aad",
+                "url": "https://api.github.com/repos/LaravelCollective/html/zipball/3a312d39ffe37da0f57b602618b61fd07c1fcec5",
+                "reference": "3a312d39ffe37da0f57b602618b61fd07c1fcec5",
                 "shasum": ""
             },
             "require": {
@@ -855,7 +901,7 @@
             ],
             "description": "HTML and Form Builders for the Laravel Framework",
             "homepage": "http://laravelcollective.com",
-            "time": "2016-01-20 18:28:21"
+            "time": "2016-01-27 22:29:54"
         },
         {
             "name": "league/flysystem",
@@ -1005,6 +1051,51 @@
             "time": "2015-10-23 04:02:07"
         },
         {
+            "name": "madcoda/php-youtube-api",
+            "version": "1.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/madcoda/php-youtube-api.git",
+                "reference": "f0e44d68d953155462b51cd01caca48496d99188"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/madcoda/php-youtube-api/zipball/f0e44d68d953155462b51cd01caca48496d99188",
+                "reference": "f0e44d68d953155462b51cd01caca48496d99188",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">5.3"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "3.7.*@stable"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "Madcoda": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Madcoda",
+                    "email": "jason@madcoda.com"
+                }
+            ],
+            "description": "PHP wrapper for the Youtube Data API v3",
+            "keywords": [
+                "api",
+                "madcoda",
+                "video",
+                "youtube"
+            ],
+            "time": "2015-09-04 10:42:30"
+        },
+        {
             "name": "monolog/monolog",
             "version": "1.17.2",
             "source": {
@@ -1083,23 +1174,23 @@
         },
         {
             "name": "mtdowling/cron-expression",
-            "version": "v1.0.4",
+            "version": "v1.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/mtdowling/cron-expression.git",
-                "reference": "fd92e883195e5dfa77720b1868cf084b08be4412"
+                "reference": "c9ee7886f5a12902b225a1a12f36bb45f9ab89e5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/mtdowling/cron-expression/zipball/fd92e883195e5dfa77720b1868cf084b08be4412",
-                "reference": "fd92e883195e5dfa77720b1868cf084b08be4412",
+                "url": "https://api.github.com/repos/mtdowling/cron-expression/zipball/c9ee7886f5a12902b225a1a12f36bb45f9ab89e5",
+                "reference": "c9ee7886f5a12902b225a1a12f36bb45f9ab89e5",
                 "shasum": ""
             },
             "require": {
                 "php": ">=5.3.2"
             },
             "require-dev": {
-                "phpunit/phpunit": "4.*"
+                "phpunit/phpunit": "~4.0|~5.0"
             },
             "type": "library",
             "autoload": {
@@ -1123,7 +1214,7 @@
                 "cron",
                 "schedule"
             ],
-            "time": "2015-01-11 23:07:46"
+            "time": "2016-01-26 21:23:30"
         },
         {
             "name": "nesbot/carbon",
@@ -2511,57 +2602,6 @@
             "time": "2015-05-11 14:41:42"
         },
         {
-            "name": "jrm2k6/cloudder",
-            "version": "0.2.2",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/jrm2k6/cloudder.git",
-                "reference": "406711dae7e5f23fb195806c048136ddebfa2ab5"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/jrm2k6/cloudder/zipball/406711dae7e5f23fb195806c048136ddebfa2ab5",
-                "reference": "406711dae7e5f23fb195806c048136ddebfa2ab5",
-                "shasum": ""
-            },
-            "require": {
-                "cloudinary/cloudinary_php": ">=1.1",
-                "php": ">=5.3.0"
-            },
-            "require-dev": {
-                "laravel/framework": ">=5.0",
-                "mockery/mockery": "0.9.*",
-                "phpunit/phpunit": "4.*"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-0": {
-                    "JD\\Cloudder": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Jeremy Dagorn",
-                    "email": "jeremy.dagorn@gmail.com"
-                }
-            ],
-            "description": "Cloudinary API wrapper for Laravel",
-            "homepage": "https://github.com/jrm2k6/cloudder",
-            "keywords": [
-                "api",
-                "cloudinary",
-                "image",
-                "laravel",
-                "laravel4",
-                "upload"
-            ],
-            "time": "2015-11-29 20:28:50"
-        },
-        {
             "name": "mockery/mockery",
             "version": "0.9.4",
             "source": {
@@ -3635,7 +3675,9 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": [],
+    "stability-flags": {
+        "alaouy/youtube": 20
+    },
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {

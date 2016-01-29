@@ -11,7 +11,9 @@
         "laravelcollective/html": "^5.2",
         "guzzlehttp/guzzle": "^6.1",
         "uxweb/sweet-alert": "~1.1",
-        "cloudinary/cloudinary_php": "^1.2"
+        "cloudinary/cloudinary_php": "^1.2",
+        "alaouy/youtube": "dev-master",
+        "madcoda/php-youtube-api": "^1.2"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",
