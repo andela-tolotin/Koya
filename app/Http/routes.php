@@ -36,6 +36,8 @@ Route::group(['middleware' => 'web'], function () {
     Route::group(['middleware' => 'user_logged_in'], function(){
         Route::get('dashboard', 'UsersController@dashboard');
         Route::post('videos', 'VideosController@store');
+        Route::put('videos/{video_id}', 'VideosController@update');
+        Route::get('videos/{video_id}/edit/', 'VideosController@edit');
         Route::delete('videos/{video_id}/delete/', 'VideosController@destroy');
     });
     //Routes for accessing users

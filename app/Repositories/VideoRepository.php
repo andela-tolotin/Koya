@@ -11,6 +11,7 @@ namespace Koya\Repositories;
 use Koya\User;
 use Koya\Video;
 use Koya\VideoTag;
+use DB;
 
 class VideoRepository
 {
@@ -58,6 +59,11 @@ class VideoRepository
         return $this->video->with('tags')->get();
     }
 
+    public function getVideoById($video_id)
+    {
+        return $this->video->where('id', $video_id)->with('tags')->get()->first();
+    }
+
     public function getAllUserVideos($user_id)
     {
         return $this->video->with('tags')->where('user_id', $user_id)->get();
@@ -65,14 +71,48 @@ class VideoRepository
 
     public function save(Array $video_data, $user_id)
     {
-        $tags = $video_data['tags'];
-        $video_data['user_id'] = $user_id;
-        $video = $this->video->create($video_data);
-        return $video->tags()->sync(array_values($tags));
+        DB::transaction(function() use($video_data, $user_id){
+            $tags = $video_data['tags'];
+            $video_data['user_id'] = $user_id;
+            $video = $this->video->create($video_data);
+            return $video->tags()->sync(array_values($tags));
+        });
+        return false;
+    }
+
+    public function update(Array $video_data, $video_id)
+    {
+        DB::beginTransaction();
+        try{
+            $tags = $video_data['tags'];
+
+            $video = $this->video->find($video_id);
+            if($video->update($video_data)) {
+                $video->tags()->sync(array_values($tags));
+            }
+
+        } catch(\Exception $ex) {
+            DB::rollback();
+            return false;
+        }
+        DB::commit();
+        return true;
     }
 
     public function deleteVideo($video_id)
     {
         return $this->video->destroy($video_id);
+    }
+
+
+    public function generateTagsArray($tags)
+    {
+        $result = [];
+
+        foreach($tags as $tag) {
+            $result[$tag->id] = $tag->label;
+        }
+
+        return $result;
     }
 }

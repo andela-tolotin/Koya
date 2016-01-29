@@ -13,7 +13,7 @@
         {{link_to('#add-video-modal','Add Video', ['id' => 'add-video-modal-trigger'])}}
         @foreach($videos as $video)
             <li>
-                <iframe width="560" height="315" src="https://www.youtube.com/embed/{{$video->link}}" frameborder="0" allowfullscreen>
+{{--                <iframe width="560" height="315" src="https://www.youtube.com/embed/{{$video->link}}" frameborder="0" allowfullscreen>--}}
                 </iframe>
                 <a href="#">
                     {{$video->title}}<br/>
@@ -25,8 +25,9 @@
                 <span>
                     <a href="#like"><i class="fa fa-heart-o"></i> [4] </a>
                     <a href="{{url('videos/'.$video->id.'/edit/')}}"><i class="fa fa-pencil"></i></a>
-                    {{Form::open(['url'=>['videos/'.$video->id.'/delete'], 'method'=>'delete'])}}
-                        <button type="submit" ><i class="fa fa-trash-o"></i></button>
+
+                    {{Form::open(['url'=>['videos/'.$video->id.'/delete'], 'method'=>'delete', 'class'=>'deleteForm'])}}
+                        <button type="submit"  id="delete-button"><i class="fa fa-trash-o"></i></button>
                     {{Form::close()}}
                 </span>
             </li>
@@ -43,4 +44,27 @@
 @section('custom-scripts')
     @include('partials.forms._add_video_modal')
     <script src="{{asset('/js/dashboard.js')}}"></script>
+    <script type="text/javascript">
+        $('.deleteForm').submit(function(e){
+            e.preventDefault();
+            var form = this;
+            swal({
+                title:"Are you sure?",
+                text:"You will not be able to recover deleted video",
+                type:'warning',
+                showCancelButton:true,
+                confirmButtonColor: "#DD6B55",
+                confirmButtonText: "Yes, delete it!",
+                cancelButtonText: "No, cancel please!",
+                closeOnConfirm: false,
+                closeOnCancel: false
+            }, function(isConfirm) {
+                if(isConfirm) {
+                    form.submit();
+                } else {
+                    swal("Cancelled", "Delete cancelled", "error");
+                }
+            });
+        });
+    </script>
 @endsection

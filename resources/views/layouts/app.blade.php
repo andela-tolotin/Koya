@@ -12,6 +12,7 @@
     <!-- Styles -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/css/materialize.min.css">
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/animate.css/3.2.0/animate.min.css">
+    <link rel="stylesheet" href="{!! URL::asset('css/sweetalert.css') !!}">
 
 </head>
 <body id="app-layout">
@@ -57,7 +58,8 @@
     <!-- Compiled and minified JavaScript -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/js/materialize.min.js"></script>
     <script src="{!! URL::asset('js/modal.min.js') !!}"></script>
-    <script src="{!! URL::asset('js/sweetalert.js') !!}"></script>
+    <script src="{!! URL::asset('js/sweetalert.min.js') !!}"></script>
+    @include('partials._errors')
     <script type="text/javascript">
         $(".dropdown-button").dropdown();
     </script>

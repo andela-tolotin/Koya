@@ -25,9 +25,13 @@ class UsersController extends Controller
 
     public function show($route_username)
     {
-        $user = $this->user->getUserByUsername($route_username);
-        $dateFromNow = $user->created_at->diffForHumans();
-        return view('users.show', compact('user', 'dateFromNow'));
+        try{
+            $user = $this->user->getUserByUsername($route_username);
+            $dateFromNow = $user->created_at->diffForHumans();
+            return view('users.show', compact('user', 'dateFromNow'));
+        } catch (\Exception $ex) {
+            return abort(404, 'Page not found');
+        }
     }
 
     public function edit($route_username)
@@ -53,18 +57,8 @@ class UsersController extends Controller
     public function dashboard()
     {
         $videos = $this->video->getAllUserVideos(Auth::user()->id);
-        $tags = $this->generateTagsArray($this->video->getAllTags());
+        $tags = $this->video->generateTagsArray($this->video->getAllTags());
         return view('users.dashboard', compact('videos', 'tags'));
     }
 
-    public function generateTagsArray($tags)
-    {
-        $result = [];
-
-        foreach($tags as $tag) {
-            $result[$tag->id] = $tag->label;
-        }
-
-        return $result;
-    }
 }
