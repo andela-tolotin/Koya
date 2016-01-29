@@ -28,7 +28,7 @@ $factory->define(Koya\User::class, function (Faker\Generator $faker) {
 $factory->define(Koya\Video::class, function(Faker\Generator $faker){
     return [
         'title' => $faker->city,
-        'link' => $faker->randomElement(['yxeKGzW-BFs', '7TF00hJI78Y', 'gqOEoUR5RHg', 'fju9ii8YsGs', 'gqOEoUR5RHg']),
+        'youtubeID' => $faker->randomElement(['yxeKGzW-BFs', '7TF00hJI78Y', 'gqOEoUR5RHg', 'fju9ii8YsGs', 'gqOEoUR5RHg']),
         'user_id' => $faker->numberBetween(1, 20),
         'description' => $faker->sentence(40)
     ];

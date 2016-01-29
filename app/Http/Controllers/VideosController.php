@@ -10,14 +10,22 @@ use Koya\Http\Requests;
 use Koya\Http\Controllers\Controller;
 use Koya\Http\Requests\VideosRequest;
 use Koya\Libraries\Cloudinary;
+use Koya\Repositories\CommentRepository;
 use Koya\Repositories\VideoRepository;
 
 class VideosController extends Controller
 {
-    public function __construct(VideoRepository $video, Cloudinary $cloudinary)
+    public function __construct(VideoRepository $video, Cloudinary $cloudinary, CommentRepository $comment)
     {
         $this->video = $video;
+        $this->comment = $comment;
         $this->cloudinary = $cloudinary;
+    }
+
+    public function show(Request $request)
+    {
+        $video = $this->video->getVideoComments($request->video_id);
+        return view('videos.show', compact('video'));
     }
 
     public function edit(Request $request)
@@ -39,20 +47,20 @@ class VideosController extends Controller
 
     public function store(VideosRequest $request)
     {
-        $link = $this->video->getVideoUrl($request->link);
-        if($link === 'error') {
-            return redirect('/dashboard')->withErrors(['link' => 'The url is not a youtube video']);
+        $youtubeID = $this->video->getVideoUrl($request->youtubeID);
+        if($youtubeID === 'error') {
+            return redirect('/dashboard')->withErrors(['youtubeID' => 'The url is not a youtube video']);
         }
-        $video_info = Youtube::getVideoInfo($link);
+        $video_info = Youtube::getVideoInfo($youtubeID);
         if($video_info == false) {
-            return redirect('/dashboard')->withErrors(['link' => 'This video does not exist']);
+            return redirect('/dashboard')->withErrors(['youtubeID' => 'This video does not exist']);
         }
 
         $thumbnail = $video_info->snippet->thumbnails->high->url;
         $cloudinary_id = $this->cloudinary->upload($thumbnail)['public_id'];
         $data = $request->toArray();
         $data['cloudinary_id'] = $cloudinary_id;
-        $data['link'] = $link;
+        $data['youtubeID'] = $youtubeID;
         $this->video->save($data, Auth::user()->id);
         return redirect('/dashboard');
     }
@@ -66,20 +74,20 @@ class VideosController extends Controller
                 return redirect('/dashboard');
             }
 
-            $link = $this->video->getVideoUrl($request->link);
-            if($link === 'error') {
-                return redirect('/videos/'.$request->video_id.'/edit')->withErrors(['link' => 'The url is not a youtube video']);
+            $youtubeID = $this->video->getVideoUrl($request->youtubeID);
+            if($youtubeID === 'error') {
+                return redirect('/videos/'.$request->video_id.'/edit')->withErrors(['youtubeID' => 'The url is not a youtube video']);
             }
 
-            $video_info = Youtube::getVideoInfo($link);
+            $video_info = Youtube::getVideoInfo($youtubeID);
 
             if($video_info == false) {
-                return redirect('/videos/'.$request->video_id.'/edit')->withErrors(['link' => 'This video does not exist']);
+                return redirect('/videos/'.$request->video_id.'/edit')->withErrors(['youtubeID' => 'This video does not exist']);
             }
 
             $video_data = $request->toArray();
 
-            $video_data['link'] = $link;
+            $video_data['youtubeID'] = $youtubeID;
 
             if($this->video->update($video_data, $request->video_id))
             {

@@ -13,9 +13,19 @@ class UserRepository
         $this->user = $user;
     }
 
+    public function userExists($user_id)
+    {
+        return !!$this->getUserByID($user_id);
+    }
+
     public function getAllUsers()
     {
         return $this->user->all();
+    }
+
+    public function getUserByID($user_id)
+    {
+        return $this->user->find($user_id);
     }
 
     public function getUserByUsername($username)
@@ -36,6 +46,7 @@ class UserRepository
         }
         return $user;
     }
+
     public function create($data)
     {
         try {

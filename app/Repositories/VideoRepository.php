@@ -26,6 +26,11 @@ class VideoRepository
         return $this->video->all();
     }
 
+    public function videoExists($video_id)
+    {
+        return !!$this->getVideoById($video_id);
+    }
+
     public function getVideoUrl($url)
     {
         $value = 'error';
@@ -114,5 +119,14 @@ class VideoRepository
         }
 
         return $result;
+    }
+
+    public function getVideoComments($video_id)
+    {
+        return $this->video
+            ->with('comments.user')
+            ->where('id', $video_id)
+            ->get()
+            ->first();
     }
 }

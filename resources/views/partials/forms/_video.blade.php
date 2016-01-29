@@ -1,9 +1,9 @@
 <div class="input-field">
-    <i class="fa fa-link prefix"></i>
-    {!! Form::text('link', isset($video->link) ? "https://www.youtube.com/embed/".$video->link : null) !!}
-    <label for="link"> Video Link</label>
-    @if($errors->has('link'))
-        <span class="red-text">{{$errors->first('link')}}</span>
+    <i class="fa fa-youtubeID prefix"></i>
+    {!! Form::text('youtubeID', isset($video->youtubeID) ? "https://www.youtube.com/embed/".$video->youtubeID : null) !!}
+    <label for="youtubeID"> Video youtubeID</label>
+    @if($errors->has('youtubeID'))
+        <span class="red-text">{{$errors->first('youtubeID')}}</span>
     @endif
 </div>
 <div class="input-field">

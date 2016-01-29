@@ -4,7 +4,7 @@ namespace Koya\Http\Requests;
 
 use Koya\Http\Requests\Request;
 
-class VideosRequest extends Request
+class CommentsRequest extends Request
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,10 +24,8 @@ class VideosRequest extends Request
     public function rules()
     {
         return [
-            'youtubeID' => array('required'),
-            'title' => array('required'),
-            'description' => array('required'),
-            'tags' => array('required'),
+            'comment' => 'required',
+            'video_id' => 'required'
         ];
     }
 }

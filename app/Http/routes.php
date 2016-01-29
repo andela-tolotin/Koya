@@ -35,10 +35,12 @@ Route::group(['middleware' => 'web'], function () {
 
     Route::group(['middleware' => 'user_logged_in'], function(){
         Route::get('dashboard', 'UsersController@dashboard');
+        Route::get('videos/{video_id}', 'VideosController@show');
         Route::post('videos', 'VideosController@store');
         Route::put('videos/{video_id}', 'VideosController@update');
         Route::get('videos/{video_id}/edit/', 'VideosController@edit');
         Route::delete('videos/{video_id}/delete/', 'VideosController@destroy');
+        Route::post('comments/', 'CommentsController@store');
     });
     //Routes for accessing users
     Route::group(['middleware' => 'user'], function() {

@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateVideosTable extends Migration
+class CreateCommentsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,13 +12,13 @@ class CreateVideosTable extends Migration
      */
     public function up()
     {
-        Schema::create('videos', function (Blueprint $table) {
+        Schema::create('comments', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('user_id');
-            $table->string('title');
-            $table->string('youtubeID');
-            $table->text('description');
-            $table->string('cloudinary_id')->nullable();
+            $table->integer('video_id');
+            $table->text('comment');
+            $table->integer('up_votes')->nullable();
+            $table->integer('down_votes')->nullable();
             $table->timestamps();
         });
     }
@@ -30,6 +30,6 @@ class CreateVideosTable extends Migration
      */
     public function down()
     {
-        Schema::drop('videos');
+        Schema::drop('comments');
     }
 }

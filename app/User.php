@@ -28,4 +28,9 @@ class User extends Authenticatable
     {
         return $this->hasMany('Koya\Video');
     }
+
+    public function comments()
+    {
+        return $this->hasMany('Kaya\Comments');
+    }
 }
