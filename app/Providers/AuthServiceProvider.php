@@ -16,7 +16,7 @@ class AuthServiceProvider extends ServiceProvider
      */
     protected $policies = [
         'Koya\Model' => 'Koya\Policies\ModelPolicy',
-        User::class => UserPolicy::class,
+        User::class => UserPolicy::class
     ];
 
     /**
@@ -29,6 +29,8 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies($gate);
 
-        //
+        $gate->define('canUpdateOrDeleteVideo', function($user, $post){
+            return $user->id === $post->user_id;
+        });
     }
 }

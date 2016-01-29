@@ -13,7 +13,7 @@
         {{link_to('#add-video-modal','Add Video', ['id' => 'add-video-modal-trigger'])}}
         @foreach($videos as $video)
             <li>
-{{--                <iframe width="560" height="315" src="https://www.youtube.com/embed/{{$video->link}}" frameborder="0" allowfullscreen>--}}
+                <iframe width="560" height="315" src="https://www.youtube.com/embed/{{$video->link}}" frameborder="0" allowfullscreen>
                 </iframe>
                 <a href="#">
                     {{$video->title}}<br/>
