@@ -1,17 +1,17 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
     <div class="row">
-        <div class="col-md-10 col-md-offset-1">
-            <div class="panel panel-default">
-                <div class="panel-heading">Dashboard</div>
-
-                <div class="panel-body">
-                    You are logged in!
-                </div>
+        @foreach($videos as $video)
+            <div class="col m3">
+                <a href="{{url('/videos/'.$video->id)}}">
+                    <img width="50" src="http://img.youtube.com/vi/{!!$video->youtubeID !!}/hqdefault.jpg"/>
+                    {{$video->title}}
+                </a>
             </div>
+        @endforeach
+        <div class="col m12">
+            {{$videos->render()}}
         </div>
     </div>
-</div>
 @endsection

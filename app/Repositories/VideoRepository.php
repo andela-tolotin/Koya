@@ -23,7 +23,8 @@ class VideoRepository
 
     public function getAllVideos()
     {
-        return $this->video->all();
+//        return $this->video->all();
+        return $this->video->with('user')->paginate(20);
     }
 
     public function videoExists($video_id)
@@ -71,7 +72,7 @@ class VideoRepository
 
     public function getAllUserVideos($user_id)
     {
-        return $this->video->with('tags')->where('user_id', $user_id)->get();
+        return $this->video->with('tags')->where('user_id', $user_id)->paginate(30);
     }
 
     public function save(Array $video_data, $user_id)

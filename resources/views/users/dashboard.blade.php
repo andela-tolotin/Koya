@@ -24,6 +24,7 @@
                 </span>
             </li>
         @endforeach
+        <li>{{$videos->render()}}</li>
     </ul>
     @else
         <h3 class="text-muted">You have no videos yet</h3>

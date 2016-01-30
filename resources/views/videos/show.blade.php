@@ -20,7 +20,7 @@
             <button type="submit" class="btn"><i class="fa fa-comment"></i></button>
         </div>
     {{Form::close()}}
-    <ul>
+    <ul class="comments">
         @foreach($video->comments as $comment)
             {{--{{dd($comment->toArray())}}--}}
             <li>
@@ -29,4 +29,16 @@
             </li>
         @endforeach
     </ul>
+@endsection
+
+@section('custom-scripts')
+    <script src="{{asset('/js/jquery.jscroll.min.js')}}"></script>
+    <script type="text/javascript">
+        $('.comments').jscroll({
+            loadingHtml: '<i class="fa fa-spinner fa-spin"></i> Loading...',
+            padding: 20,
+            nextSelector: 'a.jscroll-next:last',
+            contentSelector: 'li'
+        });
+    </script>
 @endsection

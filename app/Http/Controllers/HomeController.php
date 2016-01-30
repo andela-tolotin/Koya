@@ -4,6 +4,7 @@ namespace Koya\Http\Controllers;
 
 use Koya\Http\Requests;
 use Illuminate\Http\Request;
+use Koya\Repositories\VideoRepository;
 
 class HomeController extends Controller
 {
@@ -12,9 +13,10 @@ class HomeController extends Controller
      *
      * @return void
      */
-    public function __construct()
+    public function __construct(VideoRepository $videoRepository)
     {
-        $this->middleware('auth');
+        $this->videoRepo = $videoRepository;
+//        $this->middleware('auth');
     }
 
     /**
@@ -24,6 +26,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $videos = $this->videoRepo->getAllVideos();
+        return view('home', compact('videos'));
     }
 }

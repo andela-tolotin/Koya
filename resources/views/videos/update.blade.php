@@ -6,7 +6,7 @@
     {!! Form::close() !!}
 @endsection
 
-@section('custom-scripts')
-    @include('partials.forms._add_video_modal')
-    <script src="{{asset('/js/dashboard.js')}}"></script>
-@endsection
+    @section('custom-scripts')
+        @include('partials.forms._add_video_modal')
+        <script src="{{asset('/js/dashboard.js')}}"></script>
+    @endsection
