@@ -29,4 +29,9 @@ class CommentRepository
         return $this->comment->with('user')->with('video')->get();
     }
 
+    public function getCommentByID($comment_id)
+    {
+        return $this->comment->with('user')->where('id', $comment_id)->get()->first();
+    }
+
 }

@@ -23,6 +23,10 @@
 |
 */
 
+Route::get('test', function(){
+    return json_encode(['James', 'George']);
+});
+
 Route::group(['middleware' => 'web'], function () {
     Route::get('/', 'HomeController@index');
 //    Route::get('/', function () {

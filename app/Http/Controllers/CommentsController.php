@@ -26,8 +26,13 @@ class CommentsController extends Controller
             $data = $request->toArray();
             $data['user_id'] = Auth::user()->id;
             $comment = $this->commentRepository->save($data);
+
             if($comment) {
-                return redirect('/videos/'.$request->video_id.'/#'.$comment->id);
+                $data = $this->commentRepository->getCommentByID($comment->id);
+                $created_at = $data->created_at->diffForHumans();
+                $data = $data->toArray();
+                $data['created_at'] = $created_at;
+                return $request->ajax()? json_encode($data) : redirect('/videos/'.$request->video_id.'/#'.$comment->id);
             }
 
             return redirect('/videos/'.$request->video_id)->with('error', 'Error saving comment');
