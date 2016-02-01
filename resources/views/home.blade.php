@@ -1,17 +1,17 @@
 @extends('layouts.app')
-
+@section('navbar')
+    @include('partials.navbars._home_navbar_boostrap')
+@endsection
 @section('content')
-    <div class="row">
-        @foreach($videos as $video)
-            <div class="col m3">
-                <a href="{{url('/videos/'.$video->id)}}">
-                    <img width="50" src="http://img.youtube.com/vi/{!!$video->youtubeID !!}/hqdefault.jpg"/>
-                    {{$video->title}}
-                </a>
-            </div>
-        @endforeach
-        <div class="col m12">
-            {{$videos->render()}}
-        </div>
-    </div>
+@endsection
+
+@section('custom-scripts')
+    <script type="text/javascript">
+        $(function() {
+            $('.dropdown-toggle').dropdown();
+            $('.dropdown input, .dropdown label').click(function(e) {
+                e.stopPropagation();
+            });
+        });
+    </script>
 @endsection
