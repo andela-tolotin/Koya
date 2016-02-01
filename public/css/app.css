@@ -1,53 +1,54 @@
-html, body {
-    height: 100%;
-}
-body {
-    height: 100%;
-}
-
-.btn-primary {
-    background: rgba(0, 140, 105, 1) ;
-}
-
-nav .navbar{
-    background-color: rgba(0, 140, 105, 0);
-    -webkit-box-shadow: none;
-    -moz-box-shadow: none ;
-    box-shadow: none;
-    transition: 0.3s;
-    position: relative;
-    margin-toptop:30px;
-}
-
-nav .navbar-nav li > a {
-    color:#FFF;
-}
-
-nav .navbar-nav li > a:hover {
-    background-color:rgba(0, 140, 105, .8);
-    color:#FFF;
-}
-
-nav .navbar-nav a:focus,
-.nav .open>a, .nav .open>a:focus, .nav .open>a:hover {
-    background-color:#FFF;
-    color:rgba(0, 140, 105, 1);
-}
-
 .nav-login {
     width:350%;
     padding:20px;
 }
 
-.forgot-pass{
+.red-text{
+    color:red
+}
+nav .navbar-nav li > a {
+    color:#FFF;
+}
+
+nav .navbar-nav li > a:hover, nav .navbar-nav li > a:focus {
+    background-color: rgba(0, 140, 106, 0.99);
+    color:#FFF;
+}
+
+.nav .open>a, .nav .open>a:focus, .nav .open>a:hover {
+    background-color:#FFF;
     color:rgba(0, 140, 105, 1);
 }
+
+.input-group-addon{
+    -webkit-border-radius:0;
+    -moz-border-radius:0;
+    border-radius:0;
+    background: rgba(0, 140, 105, 1);
+    -webkit-box-shadow: 0;
+    -moz-box-shadow: 0 ;
+    box-shadow: 0 ;
+    min-width:40px;
+    text-align:center;
+}
+
+.input-group-addon .fa {
+    color:#FFF;
+}
+.btn-primary {
+    background: rgba(0, 140, 105, 1) ;
+    border-radius: 0 !important;
+}
+
+input[type=text], input[type=password] {
+    border-radius: 0 !important;
+}
+
 h1.header, h2.header, h3.header, h4.header, h5.header{
     font-family: 'Raleway', sans-serif;
     font-weight:100;
     color:rgb(0, 140, 105);
     border-bottom: 1px solid rgb(0, 140, 105);
-    text-align: center;
 }
 
 
@@ -55,102 +56,58 @@ h3.header{
     font-size: 24px;
 }
 
-.tech-nav{
-    height:0;
+.navbar-primary{
+    background:rgb(0, 140, 105) ;
+    border-radius: 0;
+    padding:5px
 }
 
-.tech-nav-scroll{
-    background-color: rgba(0, 140, 105, 1);
-    box-shadow:0px 0px 10px #444;
-}
-
-.tech-nav-container{
-    font-family: 'Raleway', sans-serif;
-    font-weight:100;
-}
-
-#hero {
-    position: relative;
-}
-
-#hero h1, #hero h2, #hero h3, #hero h4{
+.navbar-primary .navbar-nav > li a
+{
     color:#FFF;
-    border:none;
 }
 
-#hero h1{
-    font-size: 50px;
-}
-#hero, #hero > * {
-    width: 100%;
-    height: 100%;
-    min-height: 100%;
-}
-#hero .bg-img {
-    position: absolute;
-    background-image: url('../images/hero-bg.png');
-    -webkit-background-size:cover;
-    background-size:cover;
-}
-#hero .overlay {
-    position: absolute;
-    background-color: rgba(0, 140, 105, 0.7);
-}
-#hero .hero-content {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    color: #FFFFFF;
-}
-#hero .hero-content h1 {
-    margin: 0;
-    font-family: 'Raleway', sans-serif;
-    font-weight:100;
-}
+/*.fa-facebook{*/
+    /*color:#3b5998;*/
+/*}*/
 
-#hero .hero-content h4 {
-    font-family: 'Raleway', sans-serif;
-    font-weight:100;
-    width:50%;
-    text-align:center;
-    font-size:20px;
-}
+/*.fa-twitter{*/
+    /*color: #55acee;*/
+/*}*/
 
-.social-auth-icons ul li{
-    display: inline-flex;
-    list-style-type: none;
-    justify-content: space-around;
-    flex-direction: row;
-    align-items: flex-start;
-    margin:10px;
-}
+/*.fa-github{*/
+    /*color: #333333;*/
+/*}*/
 
-.social-auth-icons ul li:hover{
-    background: none;
-}
-.social-auth-icons ul li > a{
-    color:#EBEBEB;
-    display: flex;
-}
-.fa-facebook{
-    color:#3b5998;
-}
 
-.fa-twitter{
-    color: #55acee;
-}
+/*.btn-facebook {*/
+    /*background: #3b5998;*/
+    /*color:#FFF;*/
+/*}*/
 
-.fa-github{
-    color: #333333;
-}
+/*.btn-facebook > .fa-facebook{*/
+    /*color:#FFF;*/
+/*}*/
 
-.social-auth-icons ul li > a:hover{
-    color:#EBEBEB;
-    background: none;
-    text-decoration: none;
-}
+/*.btn-twitter {*/
+    /*background:#55acee;*/
+/*}*/
+/*.btn-twitter > .fa-twitter{*/
+    /*background:#55acee;;*/
+    /*color: #FFF;*/
+/*}*/
+
+/*.btn-github {*/
+    /*background:#333333;*/
+    /*color:#FFF;*/
+/*}*/
+
+/*.btn-github > .fa-github{*/
+    /*background:#333333;*/
+    /*color:#FFF;*/
+/*}*/
+
+
 
 
 
@@ -243,4 +200,4 @@ h3.header{
 /*}*/
 /*.video-img-small{*/
 
-}
+/*}*/

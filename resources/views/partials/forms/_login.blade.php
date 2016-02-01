@@ -23,5 +23,25 @@
 <div class="form-group">
     {{link_to(url('/password/reset'),'Forgot Your Password?', ['class'=>'forgot-pass'])}}
 </div>
-@include('auth.partials._socialAuthIcons')
+
+{{--<a class="btn btn-block btn-social btn-facebook" href="{{url('facebook/authorize')}}">--}}
+    {{--<span class="fa fa-facebook"></span> Sign in with Facebook--}}
+{{--</a>--}}
+{{--<a class="btn btn-block btn-social btn-github" href="{{url('github/authorize')}}">--}}
+    {{--<span class="fa fa-github"></span> Sign in with Github--}}
+{{--</a>--}}
+{{--<a class="btn btn-block btn-social btn-twitter" href="{{url('twitter/authorize')}}">--}}
+    {{--<span class="fa fa-twitter"></span> Sign in with twitter--}}
+{{--</a>--}}
+<div style="display: flex; justify-content: space-around">
+    <a class="btn btn-social-icon btn-facebook" >
+        <span class="fa fa-facebook"></span>
+    </a>
+    <a class="btn btn-social-icon btn-twitter" >
+        <span class="fa fa-twitter"></span>
+    </a>
+    <a class="btn btn-social-icon btn-github" >
+        <span class="fa fa-github"></span>
+    </a>
+</div>
 {!! Form::close()!!}

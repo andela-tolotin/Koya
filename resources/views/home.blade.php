@@ -1,6 +1,7 @@
 @extends('layouts.app')
 @section('navbar')
-    @include('partials.navbars._home_navbar_boostrap')
+    <link rel="stylesheet" href="{!! URL::asset('css/landing_page.css') !!}">
+    @include('partials.navbars._home_navbar_bootstrap')
 @endsection
 @section('content')
 @endsection

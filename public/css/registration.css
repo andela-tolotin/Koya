@@ -1,0 +1,16 @@
+.social-auth-icons{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    height: 100%;
+}
+
+.social-auth-icons a {
+    margin: 20px 0px;
+}
+
+.social-auth-icons h3, .reg-form h3{
+    border-top:1px solid rgb(0, 140, 105);
+    padding: 10px;
+}
+

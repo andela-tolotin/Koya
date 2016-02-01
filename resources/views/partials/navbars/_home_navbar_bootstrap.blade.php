@@ -13,7 +13,7 @@
             <img src="{{URL::asset('images/logo.png')}}"/>
         </a>
         <ul class="nav navbar-nav navbar-right hidden-sm">
-            <li><a href="#" >Categories</a></li>
+            <li><a href="{{url('/categories')}}" >Categories</a></li>
             @if (Auth::guest())
                 <li class="dropdown">
                     <a class="login-trigger dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" href="{{url('/login')}}">

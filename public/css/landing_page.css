@@ -1,0 +1,82 @@
+html, body {
+    height: 100%;
+}
+body {
+    height: 100%;
+}
+nav .navbar{
+    background-color: rgba(0, 140, 105, 0);
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none ;
+    box-shadow: none;
+    transition: 0.3s;
+    position: relative;
+    margin-toptop:30px;
+}
+
+.forgot-pass{
+    color:rgba(0, 140, 105, 1);
+}
+
+.tech-nav{
+    height:0;
+}
+
+.tech-nav-scroll{
+    background-color: rgba(0, 140, 105, 1);
+    box-shadow:0px 0px 10px #444;
+}
+
+.tech-nav-container{
+    font-family: 'Raleway', sans-serif;
+    font-weight:100;
+}
+
+#hero {
+    position: relative;
+}
+
+#hero h1, #hero h2, #hero h3, #hero h4{
+    color:#FFF;
+    border:none;
+}
+
+#hero h1{
+    font-size: 50px;
+}
+#hero, #hero > * {
+    width: 100%;
+    height: 100%;
+    min-height: 100%;
+}
+#hero .bg-img {
+    position: absolute;
+    background-image: url('../images/hero-bg.png');
+    -webkit-background-size:cover;
+    background-size:cover;
+}
+#hero .overlay {
+    position: absolute;
+    background-color: rgba(0, 140, 105, 0.7);
+}
+#hero .hero-content {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: #FFFFFF;
+}
+#hero .hero-content h1 {
+    margin: 0;
+    font-family: 'Raleway', sans-serif;
+    font-weight:100;
+}
+
+#hero .hero-content h4 {
+    font-family: 'Raleway', sans-serif;
+    font-weight:100;
+    width:50%;
+    text-align:center;
+    font-size:20px;
+}
