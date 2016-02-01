@@ -1,5 +1,6 @@
 @extends('layouts.app')
 @section('custom-style')
+    <link rel="stylesheet" href="{{URL::asset('css/video-page.css')}}">
 @endsection
 
 @section('navbar')
@@ -12,44 +13,75 @@
             m.async=1;m.src=("file:"==location.protocol?"https:":"")+"//s.reembed.com/G-AoyGGn.js";
             b.parentNode.insertBefore(m,b)})("reEmbed","script",window,document,"api");
     </script>
-    <div class="container">
-        <div class="youtubePlayer">
-            {{--<iframe width="560" height="315" src="https://www.youtube.com/embed/{{$video->youtubeID}}" frameborder="0" allowfullscreen>--}}
-            {{--</iframe>--}}
+    <div class="youtubePlayer">
+        <div class="frame">
             <iframe src="https://www.youtube.com/embed/{{$video->youtubeID}}?autoplay=1&cc_load_policy=1&color=white&theme=light"
-                    width="560" height="345" frameborder="0" allowfullscreen=""></iframe>
+                width="560" height="345" frameborder="0" allowfullscreen=""></iframe>
         </div>
-        <a href="#like"><i class="fa fa-heart-o"></i> [4] </a>
-        <h3>Comments</h3>
-        {{Form::open(['url' => '/comments/', 'id'=>'commentsForm'])}}
-            <div class="form-group">
-                <label>Comment</label>
-                <textarea name='comment' id="comment"></textarea>
-                <input type="hidden" name="video_id" value="{{$video->id}}" id="video_id"/>
-                <button type="submit" class="btn btn-primary"><i class="fa fa-comment"></i></button>
-            </div>
-        {{Form::close()}}
-        <ul class="comments" id="commentsSection">
-            @foreach($video->comments as $comment)
-                <li>
-                    <span>{{$comment->user->name}} | {{$comment->created_at->diffForHumans()}}</span>
-                    <p>{{$comment->comment}}</p>
-                </li>
-            @endforeach
-        </ul>
-    @endsection
-
-    @section('custom-scripts')
-        <script src="{{asset('/js/jquery.jscroll.min.js')}}"></script>
-        <script type="text/javascript">
-            $.ajaxSetup({ headers: { '_token' : '{{ csrf_token() }}' } });
-            //            $('.comments').jscroll({
-            //            loadingHtml: '<i class="fa fa-spinner fa-spin"></i> Loading...',
-            //            padding: 20,
-            //            nextSelector: 'a.jscroll-next:last',
-            //            contentSelector: 'li'
-            //            });
-        </script>
-        <script src="{{asset('/js/video.js')}}"></script>
     </div>
+    <div class="container">
+        <div class="row">
+            <div class="col col-md-4  col-xs-12 col-md-offset-3 pull-right">
+                <span>{{$video->title}}</span>
+                <a href="#like"><i class="fa fa-heart-o fa-2x"></i> [4] </a>
+            </div>
+
+        </div>
+        <div class="row">
+            <div class="col col-xs-12 col-md-6 col-md-offset-2">
+                <div class="row">
+                    <div class="col col-xs-12 col-md-10 ">
+                        <h4 class="header">Comments</h4>
+                        {{Form::open(['url' => '/comments/', 'id'=>'commentsForm'])}}
+                            <div class="form-group comment-wrapper ">
+                                <label class="visible-xs">Comment</label>
+                                <div class="avatar comment-avatar">
+                                    <img src="http://lorempixel.com/48/48/"/>
+                                </div>
+                                <input type="hidden" class='form-control' name="video_id" value="{{$video->id}}" id="video_id"/>
+                                <textarea name='comment' id="comment" placeholder="Write your comment here"></textarea>
+                            </div>
+                            @if($errors->has('comment'))
+                                <span class="red-text">{{$errors->first('comment')}}</span>
+                            @endif
+                            <button type="submit" class="btn btn-primary pull-right"> Post</button>
+                        {{Form::close()}}
+                    </div>
+                </div>
+
+
+        <div id="comments-wrapper">
+            @foreach($video->comments as $comment)
+                <div class="single-comment comment-wrapper">
+                    <div class="avatar thumb">
+                        @if($comment->user->cloudinary_id)
+                            <img src="http://lorempixel.com/48/48/"/>
+                        @else
+                            <img src="{{URL::asset('images/avatar48x48.png')}}"/>
+                        @endif
+                    </div>
+                    <div class="comment">
+                        <div class="comment-meta">
+                            <h4 class="header">
+                                <a href=#>{{$comment->user->name}}</a></h4>
+                            <span>{{$comment->created_at->diffForHumans()}}</span>
+                        </div>
+                        <p>
+                            {{$comment->comment}}
+                        </p>
+                    </div>
+                </div>
+            @endforeach
+        </div>
+    </div>
+</div>
+    </div>
+@endsection
+
+@section('custom-scripts')
+    <script src="{{asset('/js/jquery.jscroll.min.js')}}"></script>
+    <script type="text/javascript">
+        $.ajaxSetup({ headers: { '_token' : '{{ csrf_token() }}' } });
+    </script>
+    <script src="{{asset('/js/video.js')}}"></script>
 @endsection

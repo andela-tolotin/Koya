@@ -6,6 +6,7 @@ $(document).ready(function(){
             comment: $('#comment').val(),
             video_id: $('#video_id').val()
         }, function(data){
+            console.log(data);
             $('#commentsSection').prepend("<li>" +
                 "<span> "+data.user.name+" | "+data.created_at+"</span> " +
                 "<p>"+data.comment+"</p>" +

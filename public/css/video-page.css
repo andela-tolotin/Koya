@@ -1,0 +1,32 @@
+.youtubePlayer{
+    display: flex;
+    justify-content:center;
+    background: #233347;
+}
+
+.youtubePlayer .frame{
+    width:50%;
+    height:50%;
+}
+
+.navbar{
+    margin-bottom: 0 !important;
+}
+
+body{
+    background: #EBEBEB;
+}
+
+#comments-wrapper{
+    margin:10px;
+    background: #FFF;
+    padding:20px;
+    -webkit-border-radius:4px;
+    -moz-border-radius:4px;
+    border-radius:4px;
+}
+
+.comment{
+    padding-top:0px;
+    margin:0px 15px;
+}

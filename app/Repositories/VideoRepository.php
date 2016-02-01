@@ -67,7 +67,7 @@ class VideoRepository
 
     public function getVideoById($video_id)
     {
-        return $this->video->where('id', $video_id)->with('tags')->get()->first();
+        return $this->video->where('id', $video_id)->get()->first();
     }
 
     public function getAllUserVideos($user_id)
@@ -127,7 +127,7 @@ class VideoRepository
         return $this->video
             ->with('comments.user')
             ->where('id', $video_id)
-            ->get()
+            ->paginate(20)
             ->first();
     }
 }

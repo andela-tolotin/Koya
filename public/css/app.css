@@ -174,136 +174,22 @@ h3.header{
 .category-card a:hover {
     text-decoration: none;
 }
-/*.fa-facebook{*/
-    /*color:#3b5998;*/
-/*}*/
 
-/*.fa-twitter{*/
-    /*color: #55acee;*/
-/*}*/
+#comment{
+    width:87%;
+    padding:10px;
+}
 
-/*.fa-github{*/
-    /*color: #333333;*/
-/*}*/
+.comment-wrapper
+{
+    display: flex;
+    justify-content: space-between;
+}
 
-
-/*.btn-facebook {*/
-    /*background: #3b5998;*/
-    /*color:#FFF;*/
-/*}*/
-
-/*.btn-facebook > .fa-facebook{*/
-    /*color:#FFF;*/
-/*}*/
-
-/*.btn-twitter {*/
-    /*background:#55acee;*/
-/*}*/
-/*.btn-twitter > .fa-twitter{*/
-    /*background:#55acee;;*/
-    /*color: #FFF;*/
-/*}*/
-
-/*.btn-github {*/
-    /*background:#333333;*/
-    /*color:#FFF;*/
-/*}*/
-
-/*.btn-github > .fa-github{*/
-    /*background:#333333;*/
-    /*color:#FFF;*/
-/*}*/
-
-
-
-
-
-
-
-
-
-
-
-
-
-/*.category-image{*/
-    /*width: 150px;*/
-    /*height: 216px;*/
-    /*text-align: center;*/
-    /*border-bottom: 1px solid #FFF;*/
-    /*display: flex;*/
-/*}*/
-
-/*.category-info{*/
-    /*height: 55px;*/
-    /*width: 235px;*/
-    /*padding:12px 30px 12px 10px;*/
-/*}*/
-
-/*.category-name{*/
-
-    /*font-size:20px;*/
-    /*color:#FFF;*/
-/*}*/
-
-/*.category-count{*/
-    /*overflow: hidden;*/
-    /*color:#FFF;*/
-    /*margin-top:5px;*/
-    /*font-family:Raleway, 'serif';*/
-    /*font-weight: 700;*/
-    /*font-size:12px;*/
-/*}*/
-
-/*.flex{*/
-/*}*/
-
-
-/*.reachJs {*/
-    /*background: rgb(83, 213, 250);*/
-/*}*/
-
-/*.angularJS{*/
-    /*background: rgb(183, 53, 50);*/
-/*}*/
-
-/*.php{*/
-    /*background: rgb(0, 87, 161);*/
-/*}*/
-
-/*.python{*/
-    /*background: rgb(255, 211, 0);*/
-/*}*/
-
-/*.ruby{*/
-    /*background: rgb(237,105,85);*/
-/*}*/
-/*.node{*/
-    /*background: rgb(132,180,62);*/
-/*}*/
-/*.java{*/
-    /*background: rgb(233,113,0);*/
-/*}*/
-
-/*.html{*/
-    /*background: rgb(209,75,32)*/
-/*}*/
-
-
-/*.item{*/
-    /*overflow: hidden;*/
-/*}*/
-
-
-
-/*.videos-images{*/
-    /*background: rgb(102,154,191);*/
-    /*overflow: hidden;*/
-/*}*/
-
-/*.video-img-large{*/
-
-/*}*/
-/*.video-img-small{*/
-
-/*}*/
+.single-comment .comment{
+    width:90%;
+}
+.comment-avatar{
+    /*width:48px;*/
+    /*height:48px;*/
+}
