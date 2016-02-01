@@ -30,12 +30,13 @@ $factory->define(Koya\Video::class, function(Faker\Generator $faker){
         'title' => $faker->city,
         'youtubeID' => $faker->randomElement(['yxeKGzW-BFs', '7TF00hJI78Y', 'gqOEoUR5RHg', 'fju9ii8YsGs', 'gqOEoUR5RHg']),
         'user_id' => $faker->numberBetween(1, 20),
+        'category_id' => $faker->numberBetween(1, 50),
         'description' => $faker->sentence(40)
     ];
 });
 
 
-$factory->define(Koya\VideoTag::class, function(Faker\Generator $faker){
+$factory->define(Koya\Category::class, function(Faker\Generator $faker){
     return [
         'label' => $faker->unique()->randomElement([
             'java', 'php', 'python', 'javascript', 'java', 'physics', 'c#', 'painting', 'Brain FK'

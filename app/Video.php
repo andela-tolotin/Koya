@@ -7,16 +7,16 @@ use Illuminate\Database\Eloquent\Model;
 class Video extends Model
 {
     protected $fillable = [
-        'title', 'user_id', 'youtubeID', 'description', 'cloudinary_id'
+        'title', 'user_id', 'youtubeID', 'description', 'cloudinary_id', 'category_id'
     ];
 
     public function user()
     {
         return $this->belongsTo("Koya\User");
     }
-    public function tags()
+    public function category()
     {
-        return $this->belongsToMany("Koya\VideoTag", 'tags_pivot', 'video_id', 'video_tag_id');
+        return $this->hasOne("Koya\Category");
     }
 
     public function comments()

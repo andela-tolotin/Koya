@@ -27,8 +27,15 @@ Route::get('test', function(){
     return json_encode(['James', 'George']);
 });
 
+
 Route::group(['middleware' => 'web'], function () {
     Route::get('/', 'HomeController@index');
+    Route::get('/categories', 'CategoriesController@index');
+    Route::post('comments/', 'CommentsController@store');
+    Route::get('/categories/create', 'CategoriesController@create');
+    Route::post('/categories/', 'CategoriesController@store');
+    Route::get('/categories/{category_id}', 'CategoriesController@show');
+    Route::get('videos/{video_id}', 'VideosController@show');
 //    Route::get('/', function () {
 //        return view('welcome');
 //    });
@@ -39,12 +46,11 @@ Route::group(['middleware' => 'web'], function () {
 
     Route::group(['middleware' => 'user_logged_in'], function(){
         Route::get('dashboard', 'UsersController@dashboard');
-        Route::get('videos/{video_id}', 'VideosController@show');
         Route::post('videos', 'VideosController@store');
         Route::put('videos/{video_id}', 'VideosController@update');
         Route::get('videos/{video_id}/edit/', 'VideosController@edit');
         Route::delete('videos/{video_id}/delete/', 'VideosController@destroy');
-        Route::post('comments/', 'CommentsController@store');
+
     });
     //Routes for accessing users
     Route::group(['middleware' => 'user'], function() {

@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 
-class VideoTagsSeeder extends Seeder
+class CategoriesSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -11,6 +11,6 @@ class VideoTagsSeeder extends Seeder
      */
     public function run()
     {
-        factory(Koya\VideoTag::class, 8)->create();
+        factory(Koya\Category::class, 8)->create();
     }
 }

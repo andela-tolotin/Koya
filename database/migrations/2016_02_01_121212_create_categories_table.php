@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateTagsPivotTable extends Migration
+class CreateCategoriesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,10 +12,11 @@ class CreateTagsPivotTable extends Migration
      */
     public function up()
     {
-        Schema::create('tags_pivot', function (Blueprint $table) {
+        Schema::create('categories', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('video_id');
-            $table->integer('video_tag_id');
+            $table->string('label');
+            $table->string('cloudinary_id')->nullable();
+            $table->timestamps();
         });
     }
 
@@ -26,6 +27,6 @@ class CreateTagsPivotTable extends Migration
      */
     public function down()
     {
-        Schema::drop('tags_pivot');
+        Schema::drop('categories');
     }
 }

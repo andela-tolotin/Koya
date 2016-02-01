@@ -8,17 +8,17 @@
 
 namespace Koya\Repositories;
 
+use Koya\Category;
 use Koya\User;
 use Koya\Video;
-use Koya\VideoTag;
 use DB;
 
 class VideoRepository
 {
-    public function __construct(Video $video, VideoTag $videoTag)
+    public function __construct(Video $video, Category $category)
     {
         $this->video = $video;
-        $this->videoTag = $videoTag;
+        $this->category = $category;
     }
 
     public function getAllVideos()
@@ -50,14 +50,14 @@ class VideoRepository
         return $value;
     }
 
-    public function getAllTags()
-    {
-        return $this->videoTag->all();
-    }
-
     public function getTagByLabel($tag_label)
     {
         return $this->videoTag->where('label', $tag_label);
+    }
+
+    public function getVideosByCategory($category_id)
+    {
+        return $this->video->where('category_id', $category_id)->get();
     }
 
     public function getAllVideosWithTags()

@@ -1,30 +1,36 @@
 @extends('layouts.app')
+@section('custom-style')
+@endsection
 
+@section('navbar')
+    @include('partials.navbars._navbar')
+@endsection
 @section('content')
-    <div class="content">
-        <script data-cfasync="false">
-            (function(r,e,E,m,b){E[r]=E[r]||{};E[r][b]=E[r][b]||function(){
-                        (E[r].q=E[r].q||[]).push(arguments)};b=m.getElementsByTagName(e)[0];m=m.createElement(e);
-                m.async=1;m.src=("file:"==location.protocol?"https:":"")+"//s.reembed.com/G-AoyGGn.js";
-                b.parentNode.insertBefore(m,b)})("reEmbed","script",window,document,"api");
-        </script>
-        <iframe width="560" height="315" src="https://www.youtube.com/embed/{{$video->youtubeID}}" frameborder="0" allowfullscreen>
-        </iframe>
-
+    <script data-cfasync="false">
+        (function(r,e,E,m,b){E[r]=E[r]||{};E[r][b]=E[r][b]||function(){
+                    (E[r].q=E[r].q||[]).push(arguments)};b=m.getElementsByTagName(e)[0];m=m.createElement(e);
+            m.async=1;m.src=("file:"==location.protocol?"https:":"")+"//s.reembed.com/G-AoyGGn.js";
+            b.parentNode.insertBefore(m,b)})("reEmbed","script",window,document,"api");
+    </script>
+    <div class="container">
+        <div class="youtubePlayer">
+            {{--<iframe width="560" height="315" src="https://www.youtube.com/embed/{{$video->youtubeID}}" frameborder="0" allowfullscreen>--}}
+            {{--</iframe>--}}
+            <iframe src="https://www.youtube.com/embed/{{$video->youtubeID}}?autoplay=1&cc_load_policy=1&color=white&theme=light"
+                    width="560" height="345" frameborder="0" allowfullscreen=""></iframe>
+        </div>
         <a href="#like"><i class="fa fa-heart-o"></i> [4] </a>
         <h3>Comments</h3>
         {{Form::open(['url' => '/comments/', 'id'=>'commentsForm'])}}
-            <div class="input-field">
+            <div class="form-group">
                 <label>Comment</label>
-                <textarea name='comment' rows=40 id="comment"></textarea>
+                <textarea name='comment' id="comment"></textarea>
                 <input type="hidden" name="video_id" value="{{$video->id}}" id="video_id"/>
-                <button type="submit" class="btn"><i class="fa fa-comment"></i></button>
-
+                <button type="submit" class="btn btn-primary"><i class="fa fa-comment"></i></button>
             </div>
         {{Form::close()}}
         <ul class="comments" id="commentsSection">
             @foreach($video->comments as $comment)
-                {{--{{dd($comment->toArray())}}--}}
                 <li>
                     <span>{{$comment->user->name}} | {{$comment->created_at->diffForHumans()}}</span>
                     <p>{{$comment->comment}}</p>
@@ -35,15 +41,15 @@
 
     @section('custom-scripts')
         <script src="{{asset('/js/jquery.jscroll.min.js')}}"></script>
-            <script type="text/javascript">
+        <script type="text/javascript">
             $.ajaxSetup({ headers: { '_token' : '{{ csrf_token() }}' } });
-//            $('.comments').jscroll({
-//            loadingHtml: '<i class="fa fa-spinner fa-spin"></i> Loading...',
-//            padding: 20,
-//            nextSelector: 'a.jscroll-next:last',
-//            contentSelector: 'li'
-//            });
-            </script>
-            <script src="{{asset('/js/video.js')}}"></script>
+            //            $('.comments').jscroll({
+            //            loadingHtml: '<i class="fa fa-spinner fa-spin"></i> Loading...',
+            //            padding: 20,
+            //            nextSelector: 'a.jscroll-next:last',
+            //            contentSelector: 'li'
+            //            });
+        </script>
+        <script src="{{asset('/js/video.js')}}"></script>
     </div>
 @endsection
