@@ -27,7 +27,7 @@
                 <h4>{{$user->email}}</h4>
                 <h5>Date Joined: {{$dateFromNow}}</h5>
                 @if(Auth::check() && Auth::user()->username == $user->username)
-                    {{link_to(url($user->username.'/edit'), 'Edit')}}
+                    {{link_to(url($user->username.'/edit'), 'Edit your profile', ['class'=>'btn btn-primary'])}}
                 @endif
 
             </div>
