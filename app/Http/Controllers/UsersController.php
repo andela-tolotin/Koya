@@ -9,6 +9,7 @@ use Auth;
 use Koya\Http\Requests;
 use Koya\Http\Requests\UserRequest;
 use Koya\Libraries\Cloudinary;
+use Koya\Repositories\CategoryRepository;
 use Koya\Repositories\UserRepository;
 use Koya\Repositories\VideoRepository;
 use Koya\Video;
@@ -16,11 +17,15 @@ use Alert;
 
 class UsersController extends Controller
 {
-    public function __construct(UserRepository $user, VideoRepository $video, Cloudinary $cloudinary)
+    public function __construct
+    (       UserRepository $user,
+            VideoRepository $video, Cloudinary $cloudinary,
+            CategoryRepository $categoryRepository)
     {
         $this->user = $user;
         $this->cloudinary = $cloudinary;
         $this->video = $video;
+        $this->category = $categoryRepository;
     }
 
     public function show($route_username)
@@ -57,8 +62,8 @@ class UsersController extends Controller
     public function dashboard()
     {
         $videos = $this->video->getAllUserVideos(Auth::user()->id);
-        $tags = $this->video->generateTagsArray($this->video->getAllTags());
-        return view('users.dashboard', compact('videos', 'tags'));
+        $categories = $this->category->getAllCategories()->pluck('label');
+        return view('users.dashboard', compact('videos', 'categories'));
     }
 
 }

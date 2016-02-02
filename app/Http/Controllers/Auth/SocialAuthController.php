@@ -46,7 +46,7 @@ class SocialAuthController extends Controller
             abort(500, 'There is a problem from the server, please try in a minute, or contact server admin');
         }
 
-        return redirect('/');
+        return redirect('/dashboard');
     }
 
     private function prepareUserData($user, $provider)

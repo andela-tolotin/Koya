@@ -10,16 +10,23 @@ use Koya\Http\Requests;
 use Koya\Http\Controllers\Controller;
 use Koya\Http\Requests\VideosRequest;
 use Koya\Libraries\Cloudinary;
+use Koya\Repositories\CategoryRepository;
 use Koya\Repositories\CommentRepository;
 use Koya\Repositories\VideoRepository;
 
 class VideosController extends Controller
 {
-    public function __construct(VideoRepository $video, Cloudinary $cloudinary, CommentRepository $comment)
+    public function __construct(
+        VideoRepository $video,
+        Cloudinary $cloudinary,
+        CommentRepository $comment,
+        CategoryRepository $categoryRepository
+    )
     {
         $this->video = $video;
         $this->comment = $comment;
         $this->cloudinary = $cloudinary;
+        $this->category = $categoryRepository;
     }
 
     public function show(Request $request)
@@ -31,15 +38,13 @@ class VideosController extends Controller
     public function edit(Request $request)
     {
         $video = $this->video->getVideoById($request->video_id);
+        $categories = $this->category->getAllCategories()->pluck('label');
         if($video != null) {
 
             if(Gate::denies('canUpdateOrDeleteVideo', $video)){
                 return redirect('/dashboard');
             }
-
-            $tags  = $this->video->generateTagsArray($this->video->getAllTags());
-            $selected = array_keys($this->video->generateTagsArray($video->tags));
-            return view('videos.update', compact('video', 'tags', 'selected'));
+            return view('videos.update', compact('video', 'categories'));
         }
         return abort(404, 'The video does not exist or has been moved');
     }
@@ -55,14 +60,22 @@ class VideosController extends Controller
         if($video_info == false) {
             return redirect('/dashboard')->withErrors(['youtubeID' => 'This video does not exist']);
         }
-
         $thumbnail = $video_info->snippet->thumbnails->high->url;
         $cloudinary_id = $this->cloudinary->upload($thumbnail)['public_id'];
         $data = $request->toArray();
+
+        //Set save data
         $data['cloudinary_id'] = $cloudinary_id;
+        $data['category_id']  = $request->category;
+        $data['user_id']  = Auth::user()->id;
         $data['youtubeID'] = $youtubeID;
-        $this->video->save($data, Auth::user()->id);
-        return redirect('/dashboard');
+
+
+        if($this->video->save($data)) {
+            return redirect('/dashboard')->with('success', 'video added');
+        } else {
+            return redirect('/dashboard')->with('error', 'There was an error saving the video, check your form');
+        }
     }
 
     public function update(VideosRequest $request)
@@ -98,7 +111,6 @@ class VideosController extends Controller
 
         return abort(404, 'The resource you are looking for is not available');
     }
-
 
     public function destroy(Request $request)
     {

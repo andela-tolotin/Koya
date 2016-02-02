@@ -27,7 +27,7 @@ class VideosRequest extends Request
             'youtubeID' => array('required'),
             'title' => array('required'),
             'description' => array('required'),
-            'tags' => array('required'),
+            'category' => array('required'),
         ];
     }
 }

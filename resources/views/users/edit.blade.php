@@ -1,4 +1,11 @@
 @extends('layouts.app')
+@section('custom-style')
+    <link rel="stylesheet" href="{{URL::asset('css/dashboard.css')}}">
+@endsection
+
+@section('navbar')
+    @include('partials.navbars._navbar')
+@endsection
 
 @section('content')
     {!! Form::model(Auth::user(), [url(Auth::user()->username.'/edit'), 'enctype'=>'multipart/form-data', 'file'=>true, 'method' => 'PUT']) !!}

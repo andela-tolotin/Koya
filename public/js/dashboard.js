@@ -1,6 +1,6 @@
 
-$('select').material_select();
-$('#description_textarea').trigger('autoresize');
+//$('select').material_select();
+//$('#description_textarea').trigger('autoresize');
 $("#add-video-modal-trigger").animatedModal({
     modalTarget:'add-video-modal',
     animatedIn:'bounceInUp',

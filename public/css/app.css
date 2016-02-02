@@ -40,8 +40,9 @@ nav .navbar-nav li > a:hover, nav .navbar-nav li > a:focus {
     border-radius: 0 !important;
 }
 
-input[type=text], input[type=password] {
+input[type=text], input[type=password], select {
     border-radius: 0 !important;
+    -webkit-appearance: none;
 }
 
 h1.header, h2.header, h3.header, h4.header, h5.header{
@@ -192,4 +193,16 @@ h3.header{
 .comment-avatar{
     /*width:48px;*/
     /*height:48px;*/
+}
+
+#userMenuBadge > li a{
+    color:rgb(0, 140, 105);
+}
+#userMenuBadge > li a:hover{
+    color: rgb(255, 255, 255);
+}
+
+
+#userMenuBadge .fa {
+    padding:5px 10px 5px 5px;
 }

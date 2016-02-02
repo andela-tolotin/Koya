@@ -72,31 +72,21 @@ class VideoRepository
 
     public function getAllUserVideos($user_id)
     {
-        return $this->video->with('tags')->where('user_id', $user_id)->paginate(30);
+        return $this->video->where('user_id', $user_id)->paginate(20);
     }
 
-    public function save(Array $video_data, $user_id)
+    public function save(Array $video_data)
     {
-        DB::transaction(function() use($video_data, $user_id){
-            $tags = $video_data['tags'];
-            $video_data['user_id'] = $user_id;
-            $video = $this->video->create($video_data);
-            return $video->tags()->sync(array_values($tags));
-        });
-        return false;
+        $video = $this->video->create($video_data);
+        return $video;
     }
 
     public function update(Array $video_data, $video_id)
     {
         DB::beginTransaction();
         try{
-            $tags = $video_data['tags'];
-
             $video = $this->video->find($video_id);
-            if($video->update($video_data)) {
-                $video->tags()->sync(array_values($tags));
-            }
-
+            $video->update($video_data);
         } catch(\Exception $ex) {
             DB::rollback();
             return false;

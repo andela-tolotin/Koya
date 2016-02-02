@@ -1,0 +1,77 @@
+#add-video-modal {
+    padding:50px;
+}
+.fa-times:hover{
+    color: #9b0000;
+    cursor: pointer;
+}
+.row{
+    /*border: 1px solid red;*/
+}
+.input-group-addon .fa{
+    /*color:#FFF;*/
+}
+
+.modal-form input[type=text], .modal-form select{
+    height: 50px;
+    border-radius: 0;
+}
+.modal-form{
+    /*border:1px solid red;*/
+    padding:20px;
+    margin:10% auto;
+    with:50%;
+}
+
+#description_textarea{
+    height: 70px;
+    width:100%;
+}
+
+.deleteForm{
+    display: inline;
+}
+
+.video-title{
+    margin:0px 10px 0px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    width: 100%;
+    background: rgba(0, 140, 105, 1);
+    color:#FFF;
+    padding: 4px 10px;
+    display: block;
+    overflow: hidden
+}
+
+.panel-info{
+    background: #EBEBEB;
+    color:#FFF;
+}
+.panel-info a, .panel-info button {
+    color: rgba(0, 140, 105, 1);
+}
+
+.fa-heart{
+    color: #cf0000;
+}
+
+.user-profile{
+    position: relative;
+}
+
+.blur-image{
+    position: absolute;
+    display: inline-block;
+    z-index: -1;
+    width: 100%;
+}
+#blur_background{
+}
+
+#user-avatar{
+    border-radius: 100px;
+    position: relative;
+    bottom: 0%;
+
+}
