@@ -4,6 +4,7 @@ namespace Koya\Http\Controllers;
 
 use Koya\Http\Requests;
 use Illuminate\Http\Request;
+use Koya\Libraries\Cloudinary;
 use Koya\Repositories\VideoRepository;
 
 class HomeController extends Controller
@@ -13,9 +14,10 @@ class HomeController extends Controller
      *
      * @return void
      */
-    public function __construct(VideoRepository $videoRepository)
+    public function __construct(VideoRepository $videoRepository, Cloudinary $cloudinary)
     {
         $this->videoRepo = $videoRepository;
+        $this->cloudinary = $cloudinary;
 //        $this->middleware('auth');
     }
 

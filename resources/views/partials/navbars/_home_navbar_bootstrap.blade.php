@@ -25,18 +25,30 @@
                 </li>
                 <li><a href="{{ url('/register') }}">Register</a></li>
             @else
-                <li>
-                    <a data-activates="userMenuBadge" href="#" class="dropdown-button">
-                        {{ Auth::user()->name }}
+                <li class='dropdown'>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"
+                       role="button" aria-haspopup="true" aria-expanded="false" >
+
+                        {!! cl_image_tag(Auth::user()->avatar,
+                                ['width'=>20, 'height'=>20,'crop' => 'fill',
+                                            'gravity' => 'face' ]) !!}
                     </a>
-                    <ul class="dropdown-content" id="userMenuBadge">
-                        <li>
-                            <a href="{{ url('/dashboard') }}"> <i class="fa fa-circle-o-notch"></i>Dashboard</a>
+                    <ul class="dropdown-menu user-dropdown-menu" id="userMenuBadge">
+                        <li class="text-center">
+                            @if(Auth::user()->cloudinary_id)
+                                {!! cl_image_tag(Auth::user()->cloudinary_id,
+                                    ['width'=>80, 'height'=>80,'crop' => 'fill',
+                                                'gravity' => 'face', 'radius'=>'max' ]) !!}
+                            @else
+                                <i class="fa fa-user fa-5x"></i>
+                            @endif
+
+                            <a href="{{ url(Auth::user()->username) }}">
+                                <p>{{ Auth::user()->name }}</p>
+                            </a>
                         </li>
                         <li>
-                            <a href="{{ url(Auth::user()->username) }}">
-                                <i class="fa fa-qrcode"></i> Profile
-                            </a>
+                            <a href="{{ url('/dashboard') }}"> <i class="fa fa-circle-o-notch"></i>Dashboard</a>
                         </li>
                         <li><a href="{{ url('/logout') }}"><i class="fa fa-sign-out"></i> Logout</a></li>
                     </ul>
