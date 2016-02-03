@@ -12,7 +12,9 @@
                 <h3 class="header">
                     <span class="pull-left">Categories</span>
                     <span class="pull-right">
-                        <a href="{{url('/categories/create')}}" class="btn btn-primary">Create new category</a>
+                        @can('createCategory')
+                            <a href="{{url('/categories/create')}}" class="btn btn-primary">Create new category</a>
+                        @endcan
                     </span>
                     <br/>
                 </h3>
@@ -35,7 +37,10 @@
                                 <span>{{$category->label}}</span>
                                 <span class="pull-right">
                                     <i class="fa fa-folder-o"></i>
-                                    <span>2k+ videos</span>
+                                    <span>
+                                        {{(count($category->videos)== 0 || count($category->videos)== 1) ?
+                                                    count($category->videos) .' video' :
+                                                    count($category->videos). ' videos'}}</span>
                                 </span>
                                 {{--</a>--}}
                             </div>

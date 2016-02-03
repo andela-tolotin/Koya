@@ -149,7 +149,22 @@ h3.header{
 
 .media:nth-child(6) .media__body { background: rgba(128, 185, 41, 0.7); }
 
+.frame{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+.video_info{
+    padding:5px 20px;
+    color:#FFF;
+    background: #435b75;
+    border-top:1px solid #242f3a;
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
 
+}
 .category{
     height: 250px;
     min-width: 100%;
@@ -205,4 +220,19 @@ h3.header{
 
 #userMenuBadge .fa {
     padding:5px 10px 5px 5px;
+}
+
+.btn-heart{
+    background: rgba(255,255,255,0);
+    border:none;
+    padding:0;
+    outline: none;
+}
+
+.fa-heart{
+
+}
+
+.fa-red-heart{
+    color: #b70000;
 }

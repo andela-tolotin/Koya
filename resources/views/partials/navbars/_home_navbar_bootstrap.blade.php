@@ -32,6 +32,7 @@
                         {!! cl_image_tag(Auth::user()->avatar,
                                 ['width'=>20, 'height'=>20,'crop' => 'fill',
                                             'gravity' => 'face' ]) !!}
+                        {{ Auth::user()->name }}
                     </a>
                     <ul class="dropdown-menu user-dropdown-menu" id="userMenuBadge">
                         <li class="text-center">

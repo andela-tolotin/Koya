@@ -36,9 +36,7 @@ Route::group(['middleware' => 'web'], function () {
     Route::post('/categories/', 'CategoriesController@store');
     Route::get('/categories/{category_id}', 'CategoriesController@show');
     Route::get('videos/{video_id}', 'VideosController@show');
-//    Route::get('/', function () {
-//        return view('welcome');
-//    });
+
     Route::auth();
     Route::get('{provider}/authorize', 'Auth\SocialAuthController@authorizeProvider');
     Route::get('{provider}/login', 'Auth\SocialAuthController@login');
@@ -48,6 +46,7 @@ Route::group(['middleware' => 'web'], function () {
         Route::get('dashboard', 'UsersController@dashboard');
         Route::post('videos', 'VideosController@store');
         Route::put('videos/{video_id}', 'VideosController@update');
+        Route::put('videos/{video_id}/favourite', 'VideosController@favourite');
         Route::get('videos/{video_id}/edit/', 'VideosController@edit');
         Route::delete('videos/{video_id}/delete/', 'VideosController@destroy');
 

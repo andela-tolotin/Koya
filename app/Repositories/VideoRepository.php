@@ -100,7 +100,6 @@ class VideoRepository
         return $this->video->destroy($video_id);
     }
 
-
     public function generateTagsArray($tags)
     {
         $result = [];

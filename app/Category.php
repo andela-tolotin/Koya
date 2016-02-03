@@ -9,6 +9,6 @@ class Category extends Model
     protected $fillable = ['label', 'cloudinary_id'];
     public function videos()
     {
-        $this->hasMany('Koya\Video');
+        return $this->hasMany('Koya\Video');
     }
 }

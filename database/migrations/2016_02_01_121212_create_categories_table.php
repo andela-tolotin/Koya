@@ -15,7 +15,6 @@ class CreateCategoriesTable extends Migration
         Schema::create('categories', function (Blueprint $table) {
             $table->increments('id');
             $table->string('label');
-            $table->integer('video_id');
             $table->string('cloudinary_id')->nullable();
             $table->timestamps();
         });

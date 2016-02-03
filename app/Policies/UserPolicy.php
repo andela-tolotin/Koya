@@ -26,11 +26,26 @@ class UserPolicy
     public function canUpdateVideo($user, $video)
     {
         dd($user->id);
+
         return $user->id === $video->user_id;
     }
 
     public function view()
     {
-        return $this->auth->check();
+        return $this->userSignedIn();
+    }
+
+    public function favourite()
+    {
+        return $this->userSignedIn();
+    }
+
+//    public function comment()
+//    {
+//        return Auth::check();
+//    }
+    private function userSignedIn()
+    {
+        return Auth::check();
     }
 }

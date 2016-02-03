@@ -12,6 +12,7 @@ use Koya\Http\Requests\VideosRequest;
 use Koya\Libraries\Cloudinary;
 use Koya\Repositories\CategoryRepository;
 use Koya\Repositories\CommentRepository;
+use Koya\Repositories\FavouriteVideoRepository;
 use Koya\Repositories\VideoRepository;
 
 class VideosController extends Controller
@@ -20,13 +21,15 @@ class VideosController extends Controller
         VideoRepository $video,
         Cloudinary $cloudinary,
         CommentRepository $comment,
-        CategoryRepository $categoryRepository
+        CategoryRepository $categoryRepository,
+        FavouriteVideoRepository $favouriteVideoRepository
     )
     {
         $this->video = $video;
         $this->comment = $comment;
         $this->cloudinary = $cloudinary;
         $this->category = $categoryRepository;
+        $this->favourite  = $favouriteVideoRepository;
     }
 
     public function show(Request $request)
@@ -124,6 +127,23 @@ class VideosController extends Controller
         }
 
         return abort(404, 'Video not found');
+    }
+
+
+    public function favourite(Request $request)
+    {
+        if($this->favourite->hasUserLikedVideo( $request->video_id, Auth::user()->id)) {
+            $result = $this->favourite->unlikeVideo($request->video_id, Auth::user()->id);
+        } else {
+            $result = $this->favourite->likeVideo($request->video_id, Auth::user()->id);
+        }
+
+        if($result) {
+            return redirect("videos/$request->video_id");
+        } else {
+            return redirect("videos/$request->video_id")
+                ->with('errors', 'There was an error performing that operation, try again');
+        }
     }
 
 

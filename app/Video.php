@@ -23,4 +23,9 @@ class Video extends Model
     {
         return $this->hasMany("Koya\Comment")->orderBy('created_at', 'desc');
     }
+
+    public function favourites()
+    {
+        return $this->hasMany('Koya\FavouriteVideo');
+    }
 }

@@ -24,23 +24,14 @@
     {{link_to(url('/password/reset'),'Forgot Your Password?', ['class'=>'forgot-pass'])}}
 </div>
 
-{{--<a class="btn btn-block btn-social btn-facebook" href="{{url('facebook/authorize')}}">--}}
-    {{--<span class="fa fa-facebook"></span> Sign in with Facebook--}}
-{{--</a>--}}
-{{--<a class="btn btn-block btn-social btn-github" href="{{url('github/authorize')}}">--}}
-    {{--<span class="fa fa-github"></span> Sign in with Github--}}
-{{--</a>--}}
-{{--<a class="btn btn-block btn-social btn-twitter" href="{{url('twitter/authorize')}}">--}}
-    {{--<span class="fa fa-twitter"></span> Sign in with twitter--}}
-{{--</a>--}}
 <div style="display: flex; justify-content: space-around">
-    <a class="btn btn-social-icon btn-facebook" >
+    <a class="btn btn-social-icon btn-facebook" href="{{url('/facebook/authorize')}}">
         <span class="fa fa-facebook"></span>
     </a>
-    <a class="btn btn-social-icon btn-twitter" >
+    <a class="btn btn-social-icon btn-twitter" href="{{url('twitter/authorize')}}">
         <span class="fa fa-twitter"></span>
     </a>
-    <a class="btn btn-social-icon btn-github" >
+    <a class="btn btn-social-icon btn-github" href="{{url('github/authorize')}}">
         <span class="fa fa-github"></span>
     </a>
 </div>

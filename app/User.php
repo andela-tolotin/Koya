@@ -31,6 +31,12 @@ class User extends Authenticatable
 
     public function comments()
     {
-        return $this->hasMany('Kaya\Comments');
+        return $this->hasMany('Koya\Comments');
     }
+
+    public function favourites()
+    {
+        return $this->hasManay('Koya\FavouriteVideo');
+    }
+
 }

@@ -36,7 +36,11 @@
                                 <button type="submit"  id="delete-button"><i class="fa fa-trash-o"></i></button>
                                 {{Form::close()}}
                                 <span class="pull-right">
-                                    <a href="#like"><i class="fa fa-heart"></i> 40000</a>
+
+                                    <a href="#"> <i class="fa fa-comment"></i> {{count($video->comments)}}</a>
+                                    &nbsp;
+                                    <i class="fa fa-heart"></i>
+                                    <a href="#">{{count($video->favourites)}}</a>
                                 </span>
                             </div>
                         </div>

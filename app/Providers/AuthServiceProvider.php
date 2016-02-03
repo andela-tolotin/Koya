@@ -6,6 +6,7 @@ use Illuminate\Contracts\Auth\Access\Gate as GateContract;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 use Koya\Policies\UserPolicy;
 use Koya\User;
+use Auth;
 
 class AuthServiceProvider extends ServiceProvider
 {
@@ -31,6 +32,14 @@ class AuthServiceProvider extends ServiceProvider
 
         $gate->define('canUpdateOrDeleteVideo', function($user, $post){
             return $user->id === $post->user_id;
+        });
+
+        $gate->define('comment', function(){
+            return Auth::check();
+        });
+
+        $gate->define('createCategory', function(){
+            return Auth::check();
         });
     }
 }

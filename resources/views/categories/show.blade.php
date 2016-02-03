@@ -31,8 +31,13 @@
                             <div class="panel-info">
                                 <span>{{$video->title}}</span>
                                 <span class="pull-right">
-                                    <i class="fa fa-folder-o"></i>
-                                    <span>2k+ videos</span>
+                                    <span>
+                                        {{count($video->comments)}}
+                                        <i class="fa fa-comment"></i>
+                                        &nbsp;
+                                        {{count($video->favourites)}}
+                                        <i class="fa fa-heart fa-red-heart"></i>
+                                    </span>
                                 </span>
                             </div>
                         </a>
