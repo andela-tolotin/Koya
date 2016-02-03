@@ -67,7 +67,7 @@ class VideoRepository
 
     public function getVideoById($video_id)
     {
-        return $this->video->where('id', $video_id)->get()->first();
+        return $this->video->where('id', $video_id)->with('favourites')->with('user')->get()->first();
     }
 
     public function getAllUserVideos($user_id)

@@ -64,11 +64,8 @@ class VideosController extends Controller
             return redirect('/dashboard')->withErrors(['youtubeID' => 'This video does not exist']);
         }
         $thumbnail = $video_info->snippet->thumbnails->high->url;
-        $cloudinary_id = $this->cloudinary->upload($thumbnail)['public_id'];
         $data = $request->toArray();
 
-        //Set save data
-        $data['cloudinary_id'] = $cloudinary_id;
         $data['category_id']  = $request->category;
         $data['user_id']  = Auth::user()->id;
         $data['youtubeID'] = $youtubeID;
@@ -130,21 +127,26 @@ class VideosController extends Controller
     }
 
 
-    public function favourite(Request $request)
+    public function favourite(Requests\FavouritesVideoRequest $request)
     {
+        $type = 0;
         if($this->favourite->hasUserLikedVideo( $request->video_id, Auth::user()->id)) {
             $result = $this->favourite->unlikeVideo($request->video_id, Auth::user()->id);
         } else {
+            $type = 1;
             $result = $this->favourite->likeVideo($request->video_id, Auth::user()->id);
         }
 
+        return $type;
+
         if($result) {
+            if($request->ajax()){
+                return $type;
+            }
             return redirect("videos/$request->video_id");
         } else {
             return redirect("videos/$request->video_id")
                 ->with('errors', 'There was an error performing that operation, try again');
         }
     }
-
-
 }

@@ -19,15 +19,19 @@
                 width="560" height="345" frameborder="0" allowfullscreen=""></iframe>
             <div class='video_info'>
                 <span class="video-title"> {{$video->title}} </span>
-                {{Form::open(['url' => "/videos/$video->id/favourite", 'method'=>'put', 'class'=>'form-inline'])}}
+                {{Form::open(['url' => "/videos/$video->id/favourite",
+                'method'=>'put',
+                'class'=>'form-inline'])}}
                 <input type="hidden" class='form-control' name="video_id" value="{{$video->id}}" id="video_id"/>
-                <button type="submit" class="btn-heart">
+                <button href="javascript:void(0)" type="submit" class="btn-heart" id="addFavourite" >
                     <i class="fa fa-heart
                             {{ (Auth::check() && $video->favourites->contains('user_id', Auth::user()->id)) ? 'fa-red-heart' : ''}}"></i>
                 </button>
-                <span>{{number_format(count($video->favourites))}} </span>
+                <span id="video_count">{{number_format(count($video->favourites))}} </span>
                 {{Form::close()}}
             </div>
+
+
         </div>
     </div>
 
@@ -42,7 +46,13 @@
                             <div class="form-group comment-wrapper ">
                                 <label class="visible-xs">Comment</label>
                                 <div class="avatar comment-avatar">
-                                    <img src="http://lorempixel.com/48/48/"/>
+                                    @if(Auth::user()->cloudinary_id)
+                                        {!! cl_image_tag(Auth::user()->cloudinary_id,
+                                            ['width'=>80, 'height'=>80,'crop' => 'fill',
+                                                        'gravity' => 'face' ]) !!}
+                                    @else
+                                        <i class="fa fa-user fa-5x"></i>
+                                    @endif
                                 </div>
                                 <input type="hidden" class='form-control' name="video_id" value="{{$video->id}}" id="video_id"/>
                                 <textarea name='comment' id="comment" placeholder="Write your comment here"></textarea>
@@ -63,7 +73,9 @@
                     <div class="single-comment comment-wrapper">
                         <div class="avatar thumb">
                             @if($comment->user->cloudinary_id)
-                                <img src="http://lorempixel.com/48/48/"/>
+                                {!! cl_image_tag($comment->user->cloudinary_id,
+                                            ['width'=>48, 'height'=>48,'crop' => 'fill',
+                                                        'gravity' => 'face' ]) !!}
                             @else
                                 <img src="{{URL::asset('images/avatar48x48.png')}}"/>
                             @endif
@@ -71,7 +83,7 @@
                         <div class="comment">
                             <div class="comment-meta">
                                 <h4 class="header">
-                                    <a href=#>{{$comment->user->name}}</a></h4>
+                                    <a href='{{url($comment->user->username)}}'>{{$comment->user->name}}</a></h4>
                                 <span>{{$comment->created_at->diffForHumans()}}</span>
                             </div>
                             <p>

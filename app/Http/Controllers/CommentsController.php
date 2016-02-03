@@ -24,8 +24,7 @@ class CommentsController extends Controller
         $video = $this->videRepository->getVideoById($request->video_id);
         if($video != null) {
             $data = $request->toArray();
-//            $data['user_id'] = Auth::user()->id || 1;
-            $data['user_id'] = 1;
+            $data['user_id'] = Auth::user()->id;
             $comment = $this->commentRepository->save($data);
 
             if($comment) {

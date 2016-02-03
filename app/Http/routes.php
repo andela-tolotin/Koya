@@ -49,7 +49,7 @@ Route::group(['middleware' => 'web'], function () {
         Route::put('videos/{video_id}/favourite', 'VideosController@favourite');
         Route::get('videos/{video_id}/edit/', 'VideosController@edit');
         Route::delete('videos/{video_id}/delete/', 'VideosController@destroy');
-
+        Route::post('api/videos/favourite', 'VideosController@favourite');
     });
     //Routes for accessing users
     Route::group(['middleware' => 'user'], function() {
