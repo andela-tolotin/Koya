@@ -22,7 +22,11 @@ class CategoriesController extends Controller
      * @param Cloudinary $cloudinary
      * @param VideoRepository $videoRepo
      */
-    public function __construct(CategoryRepository $categoryRepository, Cloudinary $cloudinary, VideoRepository $videoRepo)
+    public function __construct(
+        CategoryRepository $categoryRepository,
+        Cloudinary $cloudinary,
+        VideoRepository $videoRepo
+    )
     {
         $this->categoryRepo = $categoryRepository;
         $this->cloudinary = $cloudinary;
@@ -35,17 +39,15 @@ class CategoriesController extends Controller
      */
     public function index()
     {
-        $highest_video_categories = 'PHP';
         $categories = $this->categoryRepo->getAllCategories();
-        return view('categories.index', compact('categories', 'highest_video_categories'));
+        return view('categories.index', compact('categories'));
     }
 
     /**
      * Displays view for creating a new category
-     * @param Request $request
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function create(Request $request)
+    public function create()
     {
         return view('categories.create');
     }
