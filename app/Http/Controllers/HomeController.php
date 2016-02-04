@@ -11,14 +11,14 @@ class HomeController extends Controller
 {
     /**
      * Create a new controller instance.
-     *
-     * @return void
+     * HomeController constructor.
+     * @param VideoRepository $videoRepository
+     * @param Cloudinary $cloudinary
      */
     public function __construct(VideoRepository $videoRepository, Cloudinary $cloudinary)
     {
         $this->videoRepo = $videoRepository;
         $this->cloudinary = $cloudinary;
-//        $this->middleware('auth');
     }
 
     /**
@@ -28,7 +28,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $videos = $this->videoRepo->getAllVideos();
+        $videos = $this->videoRepo->getTopEight();
         return view('home', compact('videos'));
     }
 }

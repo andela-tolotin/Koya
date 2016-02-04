@@ -162,4 +162,10 @@ class VideoRepository
             ->paginate(20)
             ->first();
     }
+
+    public function getTopEight()
+    {
+        return $this->video->all()->take(8);
+    }
+
 }
