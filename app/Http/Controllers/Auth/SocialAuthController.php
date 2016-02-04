@@ -27,7 +27,7 @@ class SocialAuthController extends Controller
     }
 
     /**
-     * Authorizes the authenticationz provider to proceed to app
+     * Authorizes the authentication provider to proceed to app
      * @param $provider
      * @return mixed
      */
@@ -36,6 +36,11 @@ class SocialAuthController extends Controller
         return Socialite::driver($provider)->redirect();
     }
 
+    /**
+     * Logins the user by creating a new user if the user is not registered
+     * @param $provider
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     */
     public function login($provider)
     {
         try {
@@ -49,11 +54,21 @@ class SocialAuthController extends Controller
         return redirect('/dashboard');
     }
 
+    /**
+     * Builds user data for saving in the database
+     * @param Koya\User $user
+     * @param $provider
+     * @return array
+     */
     private function prepareUserData($user, $provider)
     {
+        //Github uses avatar while facebook and twitter uses avatar_original for storing user image
         $avatar_url = $provider == 'github' ? $user->avatar : $user->avatar_original;
+
+        //Upload user image to cloudinary
         $cloudinary_data = $this->cloudinary->upload($avatar_url);
 
+        //Build data
         $data = [
             'name'           => $user->name,
             'username' => str_replace(' ', '.', strtolower($user->name)).".".time(),

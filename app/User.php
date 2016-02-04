@@ -4,6 +4,11 @@ namespace Koya;
 
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
+/**
+ * Model for accessing users information
+ * Class User
+ * @package Koya
+ */
 class User extends Authenticatable
 {
     /**
@@ -24,16 +29,28 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
+    /**
+     * Creates a relationship between User and videos
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
     public function videos()
     {
         return $this->hasMany('Koya\Video');
     }
 
+    /**
+     * reates a relationship between user and comments
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
     public function comments()
     {
         return $this->hasMany('Koya\Comments');
     }
 
+    /**
+     * Creates relationship between user and favourites
+     * @return mixed
+     */
     public function favourites()
     {
         return $this->hasManay('Koya\FavouriteVideo');

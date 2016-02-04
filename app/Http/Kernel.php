@@ -50,5 +50,6 @@ class Kernel extends HttpKernel
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'user' => \Koya\Http\Middleware\UserMiddleware::class,
         'user_logged_in' => \Koya\Http\Middleware\LoggedInUserMiddleware::class,
+        'videos' => \Koya\Http\Middleware\VideosMiddleware::class,
     ];
 }

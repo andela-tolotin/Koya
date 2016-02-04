@@ -31,9 +31,6 @@ Route::get('test', function(){
 Route::group(['middleware' => 'web'], function () {
     Route::get('/', 'HomeController@index');
     Route::get('/categories', 'CategoriesController@index');
-    Route::post('comments/', 'CommentsController@store');
-    Route::get('/categories/create', 'CategoriesController@create');
-    Route::post('/categories/', 'CategoriesController@store');
     Route::get('/categories/{category_id}', 'CategoriesController@show');
     Route::get('videos/{video_id}', 'VideosController@show');
 
@@ -43,9 +40,12 @@ Route::group(['middleware' => 'web'], function () {
     Route::get('/home', 'HomeController@index');
 
     Route::group(['middleware' => 'user_logged_in'], function(){
+        Route::post('comments/', 'CommentsController@store');
+        Route::get('/categories/create', 'CategoriesController@create');
+        Route::post('/categories/', 'CategoriesController@store');
         Route::get('dashboard', 'UsersController@dashboard');
         Route::post('videos', 'VideosController@store');
-        Route::put('videos/{video_id}', 'VideosController@update');
+        Route::put('videos/{video_id}', 'VideosController@update')->middleware('videos');
         Route::put('videos/{video_id}/favourite', 'VideosController@favourite');
         Route::get('videos/{video_id}/edit/', 'VideosController@edit');
         Route::delete('videos/{video_id}/delete/', 'VideosController@destroy');

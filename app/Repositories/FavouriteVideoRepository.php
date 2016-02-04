@@ -13,8 +13,19 @@ use Koya\FavouriteVideo;
 use Koya\User;
 use Koya\Video;
 
+/**
+ * Class FavouriteVideoRepository
+ * @package Koya\Repositories
+ */
 class FavouriteVideoRepository
 {
+    /**
+     * Loads all dependencies for the class
+     * FavouriteVideoRepository constructor.
+     * @param FavouriteVideo $favouriteVideo
+     * @param Video $video
+     * @param User $user
+     */
     public function __construct(FavouriteVideo $favouriteVideo, Video $video, User $user)
     {
         $this->favouriteVideo = $favouriteVideo;
@@ -22,6 +33,12 @@ class FavouriteVideoRepository
         $this->user = $user;
     }
 
+    /**
+     * Checks to see if user has liked videos
+     * @param $video_id
+     * @param $user_id
+     * @return bool
+     */
     public function hasUserLikedVideo($video_id, $user_id)
     {
         return !!count(
@@ -32,11 +49,23 @@ class FavouriteVideoRepository
         );
     }
 
+    /**
+     * Adds video to user's favourite
+     * @param $video_id
+     * @param $user_id
+     * @return static
+     */
     public function likeVideo($video_id, $user_id)
     {
         return $this->favouriteVideo->create(['video_id' => $video_id, 'user_id' => $user_id]);
     }
 
+    /**
+     * Removes video from user's favourites
+     * @param $video_id
+     * @param $user_id
+     * @return mixed
+     */
     public function unlikeVideo($video_id, $user_id)
     {
         return $this->favouriteVideo

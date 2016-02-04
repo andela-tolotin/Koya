@@ -13,25 +13,48 @@ use Koya\User;
 use Koya\Video;
 use DB;
 
+/**
+ * Class VideoRepository
+ * @package Koya\Repositories
+ */
 class VideoRepository
 {
+    /**
+     * Loads classes via DI
+     * VideoRepository constructor.
+     * @param Video $video
+     * @param Category $category
+     */
     public function __construct(Video $video, Category $category)
     {
         $this->video = $video;
         $this->category = $category;
     }
 
+    /**
+     * Gets all uploaded videos
+     * @return \Illuminate\Contracts\Pagination\LengthAwarePaginator
+     */
     public function getAllVideos()
     {
-//        return $this->video->all();
         return $this->video->with('user')->paginate(20);
     }
 
+    /**
+     * Checks to see if video exists
+     * @param $video_id
+     * @return bool
+     */
     public function videoExists($video_id)
     {
         return !!$this->getVideoById($video_id);
     }
 
+    /**
+     * Extracts youtube ID from youtube URL
+     * @param $url
+     * @return string
+     */
     public function getVideoUrl($url)
     {
         $value = 'error';
@@ -50,37 +73,56 @@ class VideoRepository
         return $value;
     }
 
-    public function getTagByLabel($tag_label)
-    {
-        return $this->videoTag->where('label', $tag_label);
-    }
-
+    /**
+     * Gets videos in a category
+     * @param $category_id
+     * @return mixed
+     */
     public function getVideosByCategory($category_id)
     {
         return $this->video->where('category_id', $category_id)->get();
     }
 
-    public function getAllVideosWithTags()
-    {
-        return $this->video->with('tags')->get();
-    }
-
+    /**
+     * Gets video by given ID
+     * @param $video_id
+     * @return \Illuminate\Database\Eloquent\Collection|\Illuminate\Database\Eloquent\Model
+     */
     public function getVideoById($video_id)
     {
-        return $this->video->where('id', $video_id)->with('favourites')->with('user')->get()->first();
+        return $this->video
+            ->with('favourites')
+            ->with('user')
+            ->findOrFail($video_id);
     }
 
+    /**
+     * Gets all video by a user with pagination
+     * @param $user_id
+     * @return mixed
+     */
     public function getAllUserVideos($user_id)
     {
         return $this->video->where('user_id', $user_id)->paginate(20);
     }
 
+    /**
+     * Saves a new video
+     * @param array $video_data
+     * @return static
+     */
     public function save(Array $video_data)
     {
         $video = $this->video->create($video_data);
         return $video;
     }
 
+    /**
+     * Updates an uploaded video
+     * @param array $video_data
+     * @param $video_id
+     * @return bool
+     */
     public function update(Array $video_data, $video_id)
     {
         DB::beginTransaction();
@@ -95,22 +137,23 @@ class VideoRepository
         return true;
     }
 
+
+    /**
+     * Deletes an uploaded video
+     * @param $video_id
+     * @return int
+     */
     public function deleteVideo($video_id)
     {
         return $this->video->destroy($video_id);
     }
 
-    public function generateTagsArray($tags)
-    {
-        $result = [];
 
-        foreach($tags as $tag) {
-            $result[$tag->id] = $tag->label;
-        }
-
-        return $result;
-    }
-
+    /**
+     * Gets video with associated comments and user
+     * @param $video_id
+     * @return mixed
+     */
     public function getVideoComments($video_id)
     {
         return $this->video
