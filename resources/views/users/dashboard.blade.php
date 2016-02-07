@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('custom-style')
-    <link rel="stylesheet" href="{{asset('css/dashboard.css')}}">
+    <link rel="stylesheet" href="{{load_asset('css/dashboard.css')}}">
 @endsection
 
 @section('navbar')
@@ -68,7 +68,7 @@
 
 @section('custom-scripts')
 
-    <script src="{{asset('/js/dashboard.js')}}"></script>
+    <script src="{{load_asset('/js/dashboard.js')}}"></script>
     <script type="text/javascript">
         $('.deleteForm').submit(function(e){
             e.preventDefault();

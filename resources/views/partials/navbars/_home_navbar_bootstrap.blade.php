@@ -10,7 +10,7 @@
 <nav class="navbar  navbar-fixed-top">
     <div class="container">
         <a class="brand-logo" href="{{ url('/') }}">
-            <img src="{{asset('images/logo.png')}}"/>
+            <img src="{{load_asset('images/logo.png')}}"/>
         </a>
         <ul class="nav navbar-nav navbar-right hidden-sm">
             <li><a href="{{url('/categories')}}" >Categories</a></li>

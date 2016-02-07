@@ -7,7 +7,7 @@
     <div class="col m3 item">
         <div class="category item">
             <div class="category-image">
-                <img src="{{URL::asset('images/reactjs-logo.png')}}"/>
+                <img src="{{load_asset('images/reactjs-logo.png')}}"/>
             </div>
             <div class="category-info reachJs">
                 <span class="category-name">ReactJS</span>
@@ -18,7 +18,7 @@
     <div class="col m3 item">
         <div class="category item">
             <div class="category-image">
-                <img src="{{URL::asset('images/angularjs.png')}}"/>
+                <img src="{{load_asset('images/angularjs.png')}}"/>
             </div>
             <div class="category-info angularJS">
                 <span class="category-name">AngularJS</span>
@@ -29,7 +29,7 @@
     <div class="col m3 item">
         <div class="category item">
             <div class="category-image">
-                <img src="{{URL::asset('images/php.png')}}"/>
+                <img src="{{load_asset('images/php.png')}}"/>
             </div>
             <div class="category-info php">
                 <span class="category-name">PHP</span>
@@ -41,7 +41,7 @@
     <div class="col m3 item">
         <div class="category item">
             <div class="category-image">
-                <img src="{{URL::asset('images/python.png')}}"/>
+                <img src="{{load_asset('images/python.png')}}"/>
             </div>
             <div class="category-info python">
                 <span class="category-name">Python</span>
@@ -55,7 +55,7 @@
     <div class="col m3 item">
         <div class="category">
             <div class="category-image">
-                <img src="{{URL::asset('images/ruby.png')}}"/>
+                <img src="{{load_asset('images/ruby.png')}}"/>
             </div>
             <div class="category-info ruby">
                 <span class="category-name">Ruby</span>
@@ -68,7 +68,7 @@
     <div class="col m3 item">
         <div class="category item">
             <div class="category-image">
-                <img src="{{URL::asset('images/node.png')}}"/>
+                <img src="{{load_asset('images/node.png')}}"/>
             </div>
             <div class="category-info node">
                 <span class="category-name">Node</span>
@@ -81,7 +81,7 @@
     <div class="col m3 item">
         <div class="category">
             <div class="category-image">
-                <img src="{{URL::asset('images/java.png')}}"/>
+                <img src="{{load_asset('images/java.png')}}"/>
             </div>
             <div class="category-info java">
                 <span class="category-name">Java</span>
@@ -94,7 +94,7 @@
     <div class="col m3 item">
         <div class="category ">
             <div class="category-image">
-                <img src="{{URL::asset('images/html.png')}}"/>
+                <img src="{{load_asset('images/html.png')}}"/>
             </div>
             <div class="category-info html">
                 <span class="category-name">HTML</span>

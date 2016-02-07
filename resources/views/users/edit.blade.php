@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('custom-style')
-    <link rel="stylesheet" href="{{asset('css/dashboard.css')}}">
+    <link rel="stylesheet" href="{{load_asset('css/dashboard.css')}}">
 @endsection
 
 @section('navbar')

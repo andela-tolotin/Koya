@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('custom-style')
-    <link rel="stylesheet" href="{!! asset('css/registration.css') !!}">
+    <link rel="stylesheet" href="{!! load_asset('css/registration.css') !!}">
 @endsection
 
 @section('navbar')

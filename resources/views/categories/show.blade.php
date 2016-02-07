@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('custom-style')
-    <link rel="stylesheet" href="{{asset('css/video-page.css')}}">
+    <link rel="stylesheet" href="{{load_asset('css/video-page.css')}}">
 @endsection
 
 @section('navbar')

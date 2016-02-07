@@ -77,9 +77,10 @@ class UserTest extends TestCase
 
     public function testAnotherUserAccessUserProfileEdit()
     {
-        $user = factory(Koya\User::class)->create([
-            'password'=> bcrypt('testUser')
-        ]);
-//        $this->visit('GET', "/$user->username/edit")->edit
+        $user = factory(Koya\User::class)->create();
+
+//        dd(Koya\User::find(1)->toArray());
+        $this->call('GET', "$user->username/edit")
+        ->isForbidden();
     }
 }

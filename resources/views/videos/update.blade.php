@@ -23,5 +23,5 @@
 
     @section('custom-scripts')
         @include('partials.forms._add_video_modal')
-        <script src="{{asset('/js/dashboard.js')}}"></script>
+        <script src="{{load_asset('/js/dashboard.js')}}"></script>
     @endsection

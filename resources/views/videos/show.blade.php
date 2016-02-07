@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('custom-style')
-    <link rel="stylesheet" href="{{asset('css/video-page.css')}}">
+    <link rel="stylesheet" href="{{load_asset('css/video-page.css')}}">
 @endsection
 
 @section('navbar')
@@ -77,7 +77,7 @@
                                             ['width'=>48, 'height'=>48,'crop' => 'fill',
                                                         'gravity' => 'face' ]) !!}
                             @else
-                                <img src="{{URL::asset('images/avatar48x48.png')}}"/>
+                                <img src="{{load_asset('images/avatar48x48.png')}}"/>
                             @endif
                         </div>
                         <div class="comment">
@@ -114,9 +114,9 @@
 @endsection
 
 @section('custom-scripts')
-    <script src="{{asset('/js/jquery.jscroll.min.js')}}"></script>
+    <script src="{{load_asset('/js/jquery.jscroll.min.js')}}"></script>
     <script type="text/javascript">
         $.ajaxSetup({ headers: { '_token' : '{{ csrf_token() }}' } });
     </script>
-    <script src="{{asset('/js/video.js')}}"></script>
+    <script src="{{load_asset('/js/video.js')}}"></script>
 @endsection
