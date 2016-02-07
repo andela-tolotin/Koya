@@ -1,3 +1,3 @@
 ##Koya Learning System 
-https://travis-ci.org/andela-gjames/Koya.svg?branch=master
+[![Build Status](https://travis-ci.org/andela-gjames/Koya.svg?branch=master)](https://travis-ci.org/andela-gjames/Koya)
 ###Test
