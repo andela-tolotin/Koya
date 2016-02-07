@@ -1,19 +1,24 @@
 language: php
+
 php:
-  - '5.6'
-  - '7.0'
+  - 5.5
+  - 5.6
+  - 7.0
+  - hhvm
+
+sudo: false
+
+matrix:
+  allow_failures:
+    - php: 7.0
+    - php: hhvm
+
 install:
-  - composer self-update
-  - composer install
-  - travis_retry composer self-update && composer --version
-  - export PATH="$HOME/.composer/vendor/bin:$PATH"
-  - travis_retry composer install --prefer-dist --no-interaction
-before_script:
-  - wget http://getcomposer.org/composer.phar
+  - curl -s http://getcomposer.org/installer | php
   - php composer.phar install --dev --no-interaction
 script:
   - mkdir -p build/logs
-  - phpunit --coverage-clover build/logs/clover.xml
+  - php vendor/bin/phpunit -c phpunit.xml
 
-after_script:
-  - php vendor/bin/coveralls -v
+after_success:
+  - travis_retry php vendor/bin/coveralls
