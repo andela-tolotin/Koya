@@ -12,6 +12,9 @@ matrix:
   allow_failures:
     - php: 7.0
     - php: hhvm
+before_install:
+  - composer require phpunit/phpunit:* satooshi/php-coveralls:dev-master
+  - composer install --dev
 
 install:
   - curl -s http://getcomposer.org/installer | php
@@ -19,6 +22,9 @@ install:
 script:
   - mkdir -p build/logs
   - php vendor/bin/phpunit -c phpunit.xml
+  - ./vendor/bin/phpunit --coverage-clover ./tests/logs/clover.xml
 
+after_script:
+  - php vendor/bin/coveralls -v
 after_success:
   - travis_retry php vendor/bin/coverall
