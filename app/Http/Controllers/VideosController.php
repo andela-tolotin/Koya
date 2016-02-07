@@ -88,7 +88,7 @@ class VideosController extends Controller
 
         $data = $request->toArray();
 
-        $data['category_id']  = $request->category;
+        $data['category_id']  = $request->category + 1;
         $data['user_id']  = Auth::user()->id;
         $data['youtubeID'] = $youtubeID;
 

@@ -8,6 +8,7 @@
          convertWarningsToExceptions="true"
          processIsolation="false"
          stopOnFailure="false">
+    <php><env name="DB_CONNECTION" value="sqlite"></env></php>
     <testsuites>
         <testsuite name="Application Test Suite">
             <directory>./tests/</directory>
