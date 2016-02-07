@@ -30,5 +30,3 @@ deploy:
   run:
     - "php artisan migrate"
     - "heroku run /app/php/bin/php /app/www/artisan migrate"
-    - "/app/php/bin/php /app/www/artisan migrate"
-    - "/app/php/bin/php /app/www/artisan migrate"
