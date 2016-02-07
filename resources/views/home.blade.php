@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('navbar')
-    <link rel="stylesheet" href="{!! URL::asset('css/landing_page.css') !!}">
+    <link rel="stylesheet" href="{!! secure_asset('css/landing_page.css') !!}">
 
 @endsection
 @section('content')

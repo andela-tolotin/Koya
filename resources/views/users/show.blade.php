@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('custom-style')
-    <link rel="stylesheet" href="{{URL::asset('css/dashboard.css')}}">
+    <link rel="stylesheet" href="{{secure_asset('css/dashboard.css')}}">
     <style type="text/css">
         .image_cover{
             background: url("{!! str_replace("src='",'', substr(cl_image_tag($user->cloudinary_id,
