@@ -5,6 +5,8 @@ namespace Koya\Http\Controllers\Auth;
 use Carbon\Carbon;
 use Illuminate\Contracts\Auth\Guard;
 use Illuminate\Http\Request;
+use \Cloudinary as CloudUpload;
+use \Cloudinary\Uploader as Uploader;
 
 use Auth;
 use Koya\Http\Requests;
@@ -66,7 +68,7 @@ class SocialAuthController extends Controller
         $avatar_url = $provider == 'github' ? $user->avatar : $user->avatar_original;
 
         //Upload user image to cloudinary
-        $cloudinary_data = $this->cloudinary->upload($avatar_url);
+        $cloudinary_data = Uploader::upload($avatar_url);
 
         //Build data
         $data = [
