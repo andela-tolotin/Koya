@@ -13,7 +13,6 @@ matrix:
     - php: 7.0
     - php: hhvm
 before_install:
-  - composer require phpunit/phpunit:* satooshi/php-coveralls:dev-master
   - composer install --dev
 
 install:
