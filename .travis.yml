@@ -17,15 +17,3 @@ script:
 
 after_script:
   - php vendor/bin/coveralls -v
-env:
- - APP_ENV=testing
-deploy:
-  provider: heroku
-  on:
-    all_branches: true
-  api_key:
-    secure: 435dd6e6-c324-4c87-ad56-115862b6b355
-  app:
-    develop: tech-monster
-  run:
-    - "php artisan migrate"
