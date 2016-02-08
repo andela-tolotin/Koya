@@ -207,7 +207,7 @@ return [
         'HTML'      => Collective\Html\HtmlFacade::class,
         'Form'      => Collective\Html\FormFacade::class,
         'Socialite' => Laravel\Socialite\Facades\Socialite::class,
-        'Alert' => UxWeb\SweetAlert\SweetAlert::class,
+        'Alert'     => UxWeb\SweetAlert\SweetAlert::class,
     ],
 
 ];

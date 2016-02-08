@@ -3,26 +3,25 @@
  * Created by PhpStorm.
  * User: andela
  * Date: 28/01/2016
- * Time: 12:35
+ * Time: 12:35.
  */
-
 namespace Koya\Repositories;
 
+use DB;
 use Koya\Category;
 use Koya\User;
 use Koya\Video;
-use DB;
 
 /**
- * Class VideoRepository
- * @package Koya\Repositories
+ * Class VideoRepository.
  */
 class VideoRepository
 {
     /**
      * Loads classes via DI
      * VideoRepository constructor.
-     * @param Video $video
+     *
+     * @param Video    $video
      * @param Category $category
      */
     public function __construct(Video $video, Category $category)
@@ -32,7 +31,8 @@ class VideoRepository
     }
 
     /**
-     * Gets all uploaded videos
+     * Gets all uploaded videos.
+     *
      * @return \Illuminate\Contracts\Pagination\LengthAwarePaginator
      */
     public function getAllVideos()
@@ -41,18 +41,22 @@ class VideoRepository
     }
 
     /**
-     * Checks to see if video exists
+     * Checks to see if video exists.
+     *
      * @param $video_id
+     *
      * @return bool
      */
     public function videoExists($video_id)
     {
-        return !!$this->getVideoById($video_id);
+        return (bool) $this->getVideoById($video_id);
     }
 
     /**
-     * Extracts youtube ID from youtube URL
+     * Extracts youtube ID from youtube URL.
+     *
      * @param $url
+     *
      * @return string
      */
     public function getVideoUrl($url)
@@ -60,22 +64,24 @@ class VideoRepository
         $value = 'error';
         if (preg_match('/youtube\.com\/watch\?v=([^\&\?\/]+)/', $url, $id)) {
             $value = $id[1];
-        } else if (preg_match('/youtube\.com\/embed\/([^\&\?\/]+)/', $url, $id)) {
+        } elseif (preg_match('/youtube\.com\/embed\/([^\&\?\/]+)/', $url, $id)) {
             $value = $id[1];
-        } else if (preg_match('/youtube\.com\/v\/([^\&\?\/]+)/', $url, $id)) {
+        } elseif (preg_match('/youtube\.com\/v\/([^\&\?\/]+)/', $url, $id)) {
             $value = $id[1];
-        } else if (preg_match('/youtu\.be\/([^\&\?\/]+)/', $url, $id)) {
+        } elseif (preg_match('/youtu\.be\/([^\&\?\/]+)/', $url, $id)) {
+            $value = $id[1];
+        } elseif (preg_match('/youtube\.com\/verify_age\?next_url=\/watch%3Fv%3D([^\&\?\/]+)/', $url, $id)) {
             $value = $id[1];
         }
-        else if (preg_match('/youtube\.com\/verify_age\?next_url=\/watch%3Fv%3D([^\&\?\/]+)/', $url, $id)) {
-            $value = $id[1];
-        }
+
         return $value;
     }
 
     /**
-     * Gets videos in a category
+     * Gets videos in a category.
+     *
      * @param $category_id
+     *
      * @return mixed
      */
     public function getVideosByCategory($category_id)
@@ -84,8 +90,10 @@ class VideoRepository
     }
 
     /**
-     * Gets video by given ID
+     * Gets video by given ID.
+     *
      * @param $video_id
+     *
      * @return \Illuminate\Database\Eloquent\Collection|\Illuminate\Database\Eloquent\Model
      */
     public function getVideoById($video_id)
@@ -97,8 +105,10 @@ class VideoRepository
     }
 
     /**
-     * Gets all video by a user with pagination
+     * Gets all video by a user with pagination.
+     *
      * @param $user_id
+     *
      * @return mixed
      */
     public function getAllUserVideos($user_id)
@@ -107,40 +117,48 @@ class VideoRepository
     }
 
     /**
-     * Saves a new video
+     * Saves a new video.
+     *
      * @param array $video_data
+     *
      * @return static
      */
-    public function save(Array $video_data)
+    public function save(array $video_data)
     {
         $video = $this->video->create($video_data);
+
         return $video;
     }
 
     /**
-     * Updates an uploaded video
+     * Updates an uploaded video.
+     *
      * @param array $video_data
      * @param $video_id
+     *
      * @return bool
      */
-    public function update(Array $video_data, $video_id)
+    public function update(array $video_data, $video_id)
     {
         DB::beginTransaction();
-        try{
+        try {
             $video = $this->video->find($video_id);
             $video->update($video_data);
-        } catch(\Exception $ex) {
+        } catch (\Exception $ex) {
             DB::rollback();
+
             return false;
         }
         DB::commit();
+
         return true;
     }
 
-
     /**
-     * Deletes an uploaded video
+     * Deletes an uploaded video.
+     *
      * @param $video_id
+     *
      * @return int
      */
     public function deleteVideo($video_id)
@@ -148,10 +166,11 @@ class VideoRepository
         return $this->video->destroy($video_id);
     }
 
-
     /**
-     * Gets video with associated comments and user
+     * Gets video with associated comments and user.
+     *
      * @param $video_id
+     *
      * @return mixed
      */
     public function getVideoComments($video_id)
@@ -167,5 +186,4 @@ class VideoRepository
     {
         return $this->video->all()->take(8);
     }
-
 }

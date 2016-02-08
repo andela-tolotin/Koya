@@ -2,14 +2,8 @@
 
 namespace Koya\Http\Controllers\Auth;
 
-use Carbon\Carbon;
+use Cloudinary\Uploader as Uploader;
 use Illuminate\Contracts\Auth\Guard;
-use Illuminate\Http\Request;
-use \Cloudinary as CloudUpload;
-use \Cloudinary\Uploader as Uploader;
-
-use Auth;
-use Koya\Http\Requests;
 use Koya\Http\Controllers\Controller;
 use Koya\Libraries\Cloudinary;
 use Koya\Repositories\UserRepository;
@@ -19,6 +13,7 @@ class SocialAuthController extends Controller
 {
     /**
      * SocialAuthController constructor.
+     *
      * @param UserRepository $user
      */
     public function __construct(UserRepository $user, Guard $guard, Cloudinary $cloudinary)
@@ -29,8 +24,10 @@ class SocialAuthController extends Controller
     }
 
     /**
-     * Authorizes the authentication provider to proceed to app
+     * Authorizes the authentication provider to proceed to app.
+     *
      * @param $provider
+     *
      * @return mixed
      */
     public function authorizeProvider($provider)
@@ -39,8 +36,10 @@ class SocialAuthController extends Controller
     }
 
     /**
-     * Logins the user by creating a new user if the user is not registered
+     * Logins the user by creating a new user if the user is not registered.
+     *
      * @param $provider
+     *
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
     public function login($provider)
@@ -57,9 +56,11 @@ class SocialAuthController extends Controller
     }
 
     /**
-     * Builds user data for saving in the database
+     * Builds user data for saving in the database.
+     *
      * @param Koya\User $user
      * @param $provider
+     *
      * @return array
      */
     private function prepareUserData($user, $provider)
@@ -72,15 +73,15 @@ class SocialAuthController extends Controller
 
         //Build data
         $data = [
-            'name'           => $user->name,
-            'username' => str_replace(' ', '.', strtolower($user->name)).".".time(),
-            'email'          => $user->email,
-            'password'       => null,
-            'provider'       => $provider,
-            'provider_id'    => $user->id,
-            'provider_token' => $user->token,
-            'avatar'         => $cloudinary_data['url'],
-            'cloudinary_id'         => $cloudinary_data['public_id']
+            'name'                  => $user->name,
+            'username'              => str_replace(' ', '.', strtolower($user->name)).'.'.time(),
+            'email'                 => $user->email,
+            'password'              => null,
+            'provider'              => $provider,
+            'provider_id'           => $user->id,
+            'provider_token'        => $user->token,
+            'avatar'                => $cloudinary_data['url'],
+            'cloudinary_id'         => $cloudinary_data['public_id'],
         ];
 
         return $data;

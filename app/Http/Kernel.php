@@ -44,12 +44,12 @@ class Kernel extends HttpKernel
      * @var array
      */
     protected $routeMiddleware = [
-        'auth' => \Koya\Http\Middleware\Authenticate::class,
-        'auth.basic' => \Illuminate\Auth\Middleware\AuthenticateWithBasicAuth::class,
-        'guest' => \Koya\Http\Middleware\RedirectIfAuthenticated::class,
-        'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
-        'user' => \Koya\Http\Middleware\UserMiddleware::class,
+        'auth'           => \Koya\Http\Middleware\Authenticate::class,
+        'auth.basic'     => \Illuminate\Auth\Middleware\AuthenticateWithBasicAuth::class,
+        'guest'          => \Koya\Http\Middleware\RedirectIfAuthenticated::class,
+        'throttle'       => \Illuminate\Routing\Middleware\ThrottleRequests::class,
+        'user'           => \Koya\Http\Middleware\UserMiddleware::class,
         'user_logged_in' => \Koya\Http\Middleware\LoggedInUserMiddleware::class,
-        'videos' => \Koya\Http\Middleware\VideosMiddleware::class,
+        'videos'         => \Koya\Http\Middleware\VideosMiddleware::class,
     ];
 }

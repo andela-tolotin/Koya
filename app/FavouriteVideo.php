@@ -6,8 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 /**
  * Class for favourite videos Model
- * Class FavouriteVideo
- * @package Koya
+ * Class FavouriteVideo.
  */
 class FavouriteVideo extends Model
 {
@@ -17,7 +16,8 @@ class FavouriteVideo extends Model
     protected $fillable = ['user_id', 'video_id'];
 
     /**
-     * Creates a relationship between favourite video and user
+     * Creates a relationship between favourite video and user.
+     *
      * @return \Illuminate\Database\Eloquent\Relations\HasOne]
      */
     public function user()
@@ -26,7 +26,8 @@ class FavouriteVideo extends Model
     }
 
     /**
-     * Creates relationship between favourite video and video model
+     * Creates relationship between favourite video and video model.
+     *
      * @return \Illuminate\Database\Eloquent\Relations\HasOne
      */
     public function video()

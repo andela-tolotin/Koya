@@ -2,8 +2,8 @@
 
 namespace Koya\Http\Controllers\Auth;
 
-use Koya\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ResetsPasswords;
+use Koya\Http\Controllers\Controller;
 
 class PasswordController extends Controller
 {

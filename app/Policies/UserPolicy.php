@@ -2,8 +2,9 @@
 
 namespace Koya\Policies;
 
-use Illuminate\Auth\Access\HandlesAuthorization;
 use Auth;
+use Illuminate\Auth\Access\HandlesAuthorization;
+
 class UserPolicy
 {
     use HandlesAuthorization;
