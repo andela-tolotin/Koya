@@ -2,9 +2,9 @@
 
 namespace Koya\Http\Middleware;
 
+use Alaouy\Youtube\Facades\Youtube;
 use Closure;
 use Koya\Repositories\VideoRepository;
-use Alaouy\Youtube\Facades\Youtube;
 
 class VideosMiddleware
 {
@@ -16,8 +16,9 @@ class VideosMiddleware
     /**
      * Handle an incoming request.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \Closure  $next
+     * @param \Illuminate\Http\Request $request
+     * @param \Closure                 $next
+     *
      * @return mixed
      */
     public function handle($request, Closure $next)
@@ -26,7 +27,7 @@ class VideosMiddleware
         $youtubeID = $this->video->getVideoUrl($request->youtubeID);
 
         //Return error if link is not valid
-        if($youtubeID === 'error') {
+        if ($youtubeID === 'error') {
             return redirect('/videos/'.$request->video_id.'/edit')->withErrors(['youtubeID' => 'The url is not a youtube video']);
         }
 
@@ -34,9 +35,10 @@ class VideosMiddleware
         $video_info = Youtube::getVideoInfo($youtubeID);
 
         //Check if the video actually exists
-        if($video_info == false) {
+        if ($video_info == false) {
             return redirect('/videos/'.$request->video_id.'/edit')->withErrors(['youtubeID' => 'This video does not exist']);
         }
+
         return $next($request);
     }
 }

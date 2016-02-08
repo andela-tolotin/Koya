@@ -11,7 +11,6 @@
 |
 */
 
-
 /*
 |--------------------------------------------------------------------------
 | Application Routes
@@ -23,10 +22,9 @@
 |
 */
 
-Route::get('test', function(){
+Route::get('test', function () {
     return json_encode(['James', 'George']);
 });
-
 
 Route::group(['middleware' => 'web'], function () {
     Route::get('/', 'HomeController@index');
@@ -39,7 +37,7 @@ Route::group(['middleware' => 'web'], function () {
     Route::get('{provider}/login', 'Auth\SocialAuthController@login');
     Route::get('/home', 'HomeController@index');
 
-    Route::group(['middleware' => 'user_logged_in'], function(){
+    Route::group(['middleware' => 'user_logged_in'], function () {
         Route::post('comments/', 'CommentsController@store');
         Route::get('/categories/create', 'CategoriesController@create');
         Route::post('/categories/', 'CategoriesController@store');
@@ -52,7 +50,7 @@ Route::group(['middleware' => 'web'], function () {
         Route::post('api/videos/favourite', 'VideosController@favourite');
     });
     //Routes for accessing users
-    Route::group(['middleware' => 'user'], function() {
+    Route::group(['middleware' => 'user'], function () {
         Route::get('/{route_username}/edit', 'UsersController@edit');
         Route::put('/{route_username}/edit', 'UsersController@update');
     });

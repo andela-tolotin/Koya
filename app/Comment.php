@@ -6,8 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 /**
  * Model for comments, abstracting database intreface
- * Class Comment
- * @package Koya
+ * Class Comment.
  */
 class Comment extends Model
 {
@@ -15,11 +14,12 @@ class Comment extends Model
      * @var array Values to be savable to database
      */
     protected $fillable = [
-        'comment', 'user_id', 'video_id'
+        'comment', 'user_id', 'video_id',
     ];
 
     /**
-     * Creates relationship between comments and videos
+     * Creates relationship between comments and videos.
+     *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function video()
@@ -28,7 +28,8 @@ class Comment extends Model
     }
 
     /**
-     * Creates relationship between users and comments
+     * Creates relationship between users and comments.
+     *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function user()

@@ -6,8 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 /**
  * Model for Category for making DB queries
- * Class Category
- * @package Koya
+ * Class Category.
  */
 class Category extends Model
 {
@@ -17,7 +16,8 @@ class Category extends Model
     protected $fillable = ['label', 'cloudinary_id'];
 
     /**
-     * Creates relationship between videos and category it belongs to
+     * Creates relationship between videos and category it belongs to.
+     *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
     public function videos()
