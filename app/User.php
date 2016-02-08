@@ -6,8 +6,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 
 /**
  * Model for accessing users information
- * Class User
- * @package Koya
+ * Class User.
  */
 class User extends Authenticatable
 {
@@ -17,7 +16,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'username' ,'email', 'password', 'provider', 'provider_id', 'provider_token', 'avatar', 'cloudinary_id'
+        'name', 'username', 'email', 'password', 'provider', 'provider_id', 'provider_token', 'avatar', 'cloudinary_id',
     ];
 
     /**
@@ -30,7 +29,8 @@ class User extends Authenticatable
     ];
 
     /**
-     * Creates a relationship between User and videos
+     * Creates a relationship between User and videos.
+     *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
     public function videos()
@@ -39,7 +39,8 @@ class User extends Authenticatable
     }
 
     /**
-     * reates a relationship between user and comments
+     * reates a relationship between user and comments.
+     *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
     public function comments()
@@ -48,12 +49,12 @@ class User extends Authenticatable
     }
 
     /**
-     * Creates relationship between user and favourites
+     * Creates relationship between user and favourites.
+     *
      * @return mixed
      */
     public function favourites()
     {
         return $this->hasManay('Koya\FavouriteVideo');
     }
-
 }

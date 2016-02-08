@@ -1,9 +1,9 @@
 <?php
+
 namespace Koya\Libraries;
 
-use \Cloudinary as CloudUpload;
-use \Cloudinary\Uploader as Uploader;
-use Mockery\CountValidator\Exception;
+use Cloudinary as CloudUpload;
+use Cloudinary\Uploader as Uploader;
 
 class Cloudinary
 {
@@ -11,13 +11,13 @@ class Cloudinary
     {
         CloudUpload::config([
             'cloud_name' => env('CLOUDINARY_CLOUD_NAME'),
-            'api_key' => env('CLOUDINARY_API_KEY'),
-            'api_secret' => env('CLOUDINARY_API_SECRET')
+            'api_key'    => env('CLOUDINARY_API_KEY'),
+            'api_secret' => env('CLOUDINARY_API_SECRET'),
         ]);
 
         $this->image_options = [
-            'crop' => 'fill',
-            'gravity' => 'face'
+            'crop'    => 'fill',
+            'gravity' => 'face',
         ];
     }
 
@@ -29,15 +29,16 @@ class Cloudinary
     public function setCloudinaryID($cloudinary_id)
     {
         $this->cloudinary_id = $cloudinary_id;
+
         return $this;
     }
 
     public function getFullImage()
     {
-        try{
+        try {
             return $this->getImage($this->cloudinary_id);
         } catch (\Exception $x) {
-            return null;
+            return;
         }
     }
 
@@ -47,20 +48,22 @@ class Cloudinary
             'width'   => $width,
             'height'  => $height,
             'crop'    => 'fill',
-            'gravity' => 'face'
+            'gravity' => 'face',
         ];
 
-       $this->image_options = array_merge($this->image_options, $data);
+        $this->image_options = array_merge($this->image_options, $data);
+
         return $this;
     }
 
-    public function roundEdge($radius="max")
+    public function roundEdge($radius = 'max')
     {
         $data = [
             'radius' => $radius,
         ];
 
         $this->image_options = array_merge($this->image_options, $data);
+
         return $this;
     }
 
@@ -71,15 +74,17 @@ class Cloudinary
         ];
 
         $this->image_options = array_merge($this->image_options, $data);
+
         return $this;
     }
 
     public function makeThumb()
     {
         $data = [
-            'crop' => 'thumb'
+            'crop' => 'thumb',
         ];
         $this->image_options = array_merge($this->image_options, $data);
+
         return $this;
     }
 
@@ -90,10 +95,10 @@ class Cloudinary
 
     public function getImage()
     {
-        try{
+        try {
             return cl_image_tag($this->cloudinary_id, $this->image_options);
-        } catch(\Exception $ex) {
-            return null;
+        } catch (\Exception $ex) {
+            return;
         }
     }
 }

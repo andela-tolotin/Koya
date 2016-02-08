@@ -1,12 +1,11 @@
 <?php
 
-use Illuminate\Foundation\Testing\WithoutMiddleware;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
-use Illuminate\Foundation\Testing\DatabaseTransactions;
 
 class UserTest extends TestCase
 {
     use DatabaseMigrations;
+
     /**
      * A basic test example.
      *
@@ -16,7 +15,7 @@ class UserTest extends TestCase
     {
         factory(Koya\Category::class)->create();
 
-        $user   = factory(Koya\User::class)->create();
+        $user = factory(Koya\User::class)->create();
         $this->actingAs($user)
             ->withSession(['username' => 'test']);
 
@@ -36,7 +35,7 @@ class UserTest extends TestCase
     {
         factory(Koya\Category::class)->create();
 
-        $user   = factory(Koya\User::class)->create();
+        $user = factory(Koya\User::class)->create();
         $this->actingAs($user)
             ->withSession(['username' => 'test']);
 
@@ -54,7 +53,7 @@ class UserTest extends TestCase
     public function testUserEditsProfile()
     {
         $user = factory(Koya\User::class)->create([
-            'password'=> bcrypt('testUser')
+            'password' => bcrypt('testUser'),
         ]);
         $this->actingAs($user)
             ->withSession(['username' => $user->username]);
@@ -62,13 +61,12 @@ class UserTest extends TestCase
             ->click('Edit your profile')
             ->seePageIs('/'.$user->username.'/edit')
             ->see('Edit your profile');
-
     }
 
     public function testAnotherUserVisitUserProfile()
     {
         $user = factory(Koya\User::class)->create([
-            'password'=> bcrypt('testUser')
+            'password' => bcrypt('testUser'),
         ]);
 
         $this->visit('/'.$user->username)

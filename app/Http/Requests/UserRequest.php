@@ -3,7 +3,6 @@
 namespace Koya\Http\Requests;
 
 use Auth;
-use Koya\Http\Requests\Request;
 
 class UserRequest extends Request
 {
@@ -25,9 +24,9 @@ class UserRequest extends Request
     public function rules()
     {
         return [
-            'name'=>'required',
-            'username'=>'required|unique:users,username,'.Auth::user()->id,
-            'email' => 'required|email'
+            'name'     => 'required',
+            'username' => 'required|unique:users,username,'.Auth::user()->id,
+            'email'    => 'required|email',
         ];
     }
 }

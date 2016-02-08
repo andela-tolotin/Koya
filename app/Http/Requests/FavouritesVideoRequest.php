@@ -2,8 +2,6 @@
 
 namespace Koya\Http\Requests;
 
-use Koya\Http\Requests\Request;
-
 class FavouritesVideoRequest extends Request
 {
     /**
@@ -24,7 +22,7 @@ class FavouritesVideoRequest extends Request
     public function rules()
     {
         return [
-            'video_id' => 'required'
+            'video_id' => 'required',
         ];
     }
 }

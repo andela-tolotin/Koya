@@ -3,11 +3,9 @@
 namespace Koya\Http\Controllers;
 
 use Alaouy\Youtube\Facades\Youtube;
-use Illuminate\Http\Request;
 use Auth;
-use Gate;
+use Illuminate\Http\Request;
 use Koya\Http\Requests;
-use Koya\Http\Controllers\Controller;
 use Koya\Http\Requests\VideosRequest;
 use Koya\Libraries\Cloudinary;
 use Koya\Repositories\CategoryRepository;
@@ -20,10 +18,11 @@ class VideosController extends Controller
     /**
      * Loads all DI objects for the class
      * VideosController constructor.
-     * @param VideoRepository $video
-     * @param Cloudinary $cloudinary
-     * @param CommentRepository $comment
-     * @param CategoryRepository $categoryRepository
+     *
+     * @param VideoRepository          $video
+     * @param Cloudinary               $cloudinary
+     * @param CommentRepository        $comment
+     * @param CategoryRepository       $categoryRepository
      * @param FavouriteVideoRepository $favouriteVideoRepository
      */
     public function __construct(
@@ -32,29 +31,33 @@ class VideosController extends Controller
         CommentRepository $comment,
         CategoryRepository $categoryRepository,
         FavouriteVideoRepository $favouriteVideoRepository
-    )
-    {
+    ) {
         $this->video = $video;
         $this->comment = $comment;
         $this->cloudinary = $cloudinary;
         $this->category = $categoryRepository;
-        $this->favourite  = $favouriteVideoRepository;
+        $this->favourite = $favouriteVideoRepository;
     }
 
     /**
-     * Shows a single video  with comments
+     * Shows a single video  with comments.
+     *
      * @param Request $request
+     *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function show(Request $request)
     {
         $video = $this->video->getVideoComments($request->video_id);
+
         return view('videos.show', compact('video'));
     }
 
     /**
-     * Loads a view for editing video
+     * Loads a view for editing video.
+     *
      * @param Request $request
+     *
      * @return \Illuminate\View\View
      */
     public function edit(Request $request)
@@ -67,43 +70,46 @@ class VideosController extends Controller
 
         //Get all the category in the database
         $categories = $this->category->getAllCategories()->pluck('label');
+
         return view('videos.update', compact('video', 'categories'));
     }
 
     /**
-     * Handles new video for saving to the database
+     * Handles new video for saving to the database.
+     *
      * @param VideosRequest $request
+     *
      * @return $this|\Illuminate\Http\RedirectResponse
      */
     public function store(VideosRequest $request)
     {
         $youtubeID = $this->video->getVideoUrl($request->youtubeID);
-        if($youtubeID === 'error') {
+        if ($youtubeID === 'error') {
             return redirect('/dashboard')->withErrors(['youtubeID' => 'The url is not a youtube video']);
         }
         $video_info = Youtube::getVideoInfo($youtubeID);
-        if($video_info == false) {
+        if ($video_info == false) {
             return redirect('/dashboard')->withErrors(['youtubeID' => 'This video does not exist']);
         }
 
         $data = $request->toArray();
 
-        $data['category_id']  = $request->category + 1;
-        $data['user_id']  = Auth::user()->id;
+        $data['category_id'] = $request->category + 1;
+        $data['user_id'] = Auth::user()->id;
         $data['youtubeID'] = $youtubeID;
 
-
-        if($this->video->save($data)) {
+        if ($this->video->save($data)) {
             return redirect('/dashboard')->with('success', 'video added');
         } else {
             return redirect('/dashboard')->with('error', 'There was an error saving the video, check your form');
         }
     }
 
-
     /**
-     * Handles and prepares data for updating video
+     * Handles and prepares data for updating video.
+     *
      * @param VideosRequest $request
+     *
      * @return \Illuminate\Http\RedirectResponse
      */
     public function update(VideosRequest $request)
@@ -131,8 +137,10 @@ class VideosController extends Controller
     }
 
     /**
-     * Prepares & handles delete of video
+     * Prepares & handles delete of video.
+     *
      * @param Request $request
+     *
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector|void
      */
     public function destroy(Request $request)
@@ -151,8 +159,10 @@ class VideosController extends Controller
     }
 
     /**
-     * Handles AJAX request to add a video as favourite
+     * Handles AJAX request to add a video as favourite.
+     *
      * @param Requests\FavouritesVideoRequest $request
+     *
      * @return int
      */
     public function favourite(Requests\FavouritesVideoRequest $request)
@@ -161,7 +171,7 @@ class VideosController extends Controller
         $type = 0;
 
         //Check if user has liked video
-        if($this->favourite->hasUserLikedVideo( $request->video_id, Auth::user()->id)) {
+        if ($this->favourite->hasUserLikedVideo($request->video_id, Auth::user()->id)) {
             //Unlike video for users who have liked video originally
             $this->favourite->unlikeVideo($request->video_id, Auth::user()->id);
         } else {

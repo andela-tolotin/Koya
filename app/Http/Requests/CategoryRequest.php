@@ -2,8 +2,6 @@
 
 namespace Koya\Http\Requests;
 
-use Koya\Http\Requests\Request;
-
 class CategoryRequest extends Request
 {
     /**
@@ -24,8 +22,8 @@ class CategoryRequest extends Request
     public function rules()
     {
         return [
-            'label'=>'required|unique:categories,label',
-            'image' => 'required|image|max:2000'
+            'label' => 'required|unique:categories,label',
+            'image' => 'required|image|max:2000',
         ];
     }
 }

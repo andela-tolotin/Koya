@@ -2,20 +2,18 @@
 
 namespace Koya\Repositories;
 
-use Log;
 use Koya\User;
 use Mockery\CountValidator\Exception;
 
 /**
- * Class UserRepository
- * @package Koya\Repositories
+ * Class UserRepository.
  */
 class UserRepository
 {
-
     /**
      * Loads all dependencies for class
      * UserRepository constructor.
+     *
      * @param User $user
      */
     public function __construct(User $user)
@@ -24,17 +22,20 @@ class UserRepository
     }
 
     /**
-     * Checks to see if user exists
+     * Checks to see if user exists.
+     *
      * @param $user_id
+     *
      * @return bool
      */
     public function userExists($user_id)
     {
-        return !!$this->getUserByID($user_id);
+        return (bool) $this->getUserByID($user_id);
     }
 
     /**
-     * Returns all registered users
+     * Returns all registered users.
+     *
      * @return \Illuminate\Database\Eloquent\Collection|static[]
      */
     public function getAllUsers()
@@ -43,8 +44,10 @@ class UserRepository
     }
 
     /**
-     * Gets a registered user by id
+     * Gets a registered user by id.
+     *
      * @param $user_id
+     *
      * @return mixed
      */
     public function getUserByID($user_id)
@@ -53,8 +56,10 @@ class UserRepository
     }
 
     /**
-     * Gets a registered user by username
+     * Gets a registered user by username.
+     *
      * @param $username
+     *
      * @return mixed
      */
     public function getUserByUsername($username)
@@ -63,8 +68,10 @@ class UserRepository
     }
 
     /**
-     * Gets a user by auth provider_id
+     * Gets a user by auth provider_id.
+     *
      * @param $provider_id
+     *
      * @return mixed
      */
     public function getByProviderId($provider_id)
@@ -73,21 +80,25 @@ class UserRepository
     }
 
     /**
-     * Finds a user or creates a new user of not found
+     * Finds a user or creates a new user of not found.
+     *
      * @param $providerUser
+     *
      * @return mixed|static
      */
     public function findOrCreate($providerUser)
     {
-        $user  = $this->getByProviderId($providerUser["provider_id"]);
-        if($user == null){
+        $user = $this->getByProviderId($providerUser['provider_id']);
+        if ($user == null) {
             $user = $this->user->create($providerUser);
         }
+
         return $user;
     }
 
     /**
-     * Creates a new user
+     * Creates a new user.
+     *
      * @param $data
      */
     public function create($data)
@@ -95,22 +106,24 @@ class UserRepository
         try {
             $this->user->create($data);
         } catch (Exception $ex) {
-           abort(500);
+            abort(500);
         }
     }
 
     /**
-     * Updates a user
-     * @param array $data
-     * @param String $username
+     * Updates a user.
+     *
+     * @param array  $data
+     * @param string $username
+     *
      * @return bool
      */
-    public function update(Array $data, $username)
+    public function update(array $data, $username)
     {
-        try{
+        try {
             $user = $this->getUserByUsername($username);
             $user->update($data);
-        } catch(Exception $ex) {
+        } catch (Exception $ex) {
             abort(500);
         }
 

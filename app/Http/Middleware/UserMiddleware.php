@@ -3,7 +3,6 @@
 namespace Koya\Http\Middleware;
 
 use Closure;
-use Auth;
 use Koya\Repositories\UserRepository;
 
 class UserMiddleware
@@ -11,8 +10,9 @@ class UserMiddleware
     /**
      * Handle an incoming request.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \Closure  $next
+     * @param \Illuminate\Http\Request $request
+     * @param \Closure                 $next
+     *
      * @return mixed
      */
     public function __construct(UserRepository $user)
@@ -22,9 +22,10 @@ class UserMiddleware
 
     public function handle($request, Closure $next)
     {
-        if($this->user->getUserByUsername($request->route_username) == null) {
+        if ($this->user->getUserByUsername($request->route_username) == null) {
             abort(404);
         }
+
         return $next($request);
     }
 }

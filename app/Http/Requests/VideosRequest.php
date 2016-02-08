@@ -2,8 +2,6 @@
 
 namespace Koya\Http\Requests;
 
-use Koya\Http\Requests\Request;
-
 class VideosRequest extends Request
 {
     /**
@@ -24,10 +22,10 @@ class VideosRequest extends Request
     public function rules()
     {
         return [
-            'youtubeID' => array('required'),
-            'title' => array('required'),
-            'description' => array('required'),
-            'category' => array('required'),
+            'youtubeID'   => ['required'],
+            'title'       => ['required'],
+            'description' => ['required'],
+            'category'    => ['required'],
         ];
     }
 }

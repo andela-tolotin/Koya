@@ -1,8 +1,6 @@
 <?php
 
-use Illuminate\Foundation\Testing\WithoutMiddleware;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
-use Illuminate\Foundation\Testing\DatabaseTransactions;
 
 class AuthenticationTest extends TestCase
 {
@@ -13,7 +11,6 @@ class AuthenticationTest extends TestCase
      *
      * @return void
      */
-
     public function testTraditionalRegistration()
     {
         $user = factory(Koya\User::class)->make();
@@ -30,10 +27,10 @@ class AuthenticationTest extends TestCase
     public function testTraditionalLogin()
     {
         $user = factory(Koya\User::class)->create([
-            'password' => bcrypt('testPass')
+            'password' => bcrypt('testPass'),
         ]);
         $this->visit('/')
-            ->type($user->email,'email')
+            ->type($user->email, 'email')
             ->type('testPass', 'password')
             ->press('Login')
             ->seePageIs('/dashboard');
@@ -41,6 +38,6 @@ class AuthenticationTest extends TestCase
 
     public function testFacebookLogin()
     {
-       //TODO add social authentication test
+        //TODO add social authentication test
     }
 }

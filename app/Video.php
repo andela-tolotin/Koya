@@ -6,21 +6,22 @@ use Illuminate\Database\Eloquent\Model;
 
 /**
  * Video model for accessing videos
- * Class Video
- * @package Koya
+ * Class Video.
  */
 class Video extends Model
 {
     /**
-     * Mass assignable properties
+     * Mass assignable properties.
+     *
      * @var array
      */
     protected $fillable = [
-        'title', 'user_id', 'youtubeID', 'description', 'cloudinary_id', 'category_id'
+        'title', 'user_id', 'youtubeID', 'description', 'cloudinary_id', 'category_id',
     ];
 
     /**
-     * Creates a relationship between user and videos
+     * Creates a relationship between user and videos.
+     *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function user()
@@ -29,7 +30,8 @@ class Video extends Model
     }
 
     /**
-     * Creates a relationship between video and category
+     * Creates a relationship between video and category.
+     *
      * @return \Illuminate\Database\Eloquent\Relations\HasOne
      */
     public function category()
@@ -38,7 +40,8 @@ class Video extends Model
     }
 
     /**
-     * Creates a relationship between videos and comments
+     * Creates a relationship between videos and comments.
+     *
      * @return mixed
      */
     public function comments()
@@ -47,7 +50,8 @@ class Video extends Model
     }
 
     /**
-     * Creates a relationship between video and favourites
+     * Creates a relationship between video and favourites.
+     *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
     public function favourites()

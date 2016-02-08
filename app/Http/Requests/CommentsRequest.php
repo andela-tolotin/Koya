@@ -2,8 +2,6 @@
 
 namespace Koya\Http\Requests;
 
-use Koya\Http\Requests\Request;
-
 class CommentsRequest extends Request
 {
     /**
@@ -24,8 +22,8 @@ class CommentsRequest extends Request
     public function rules()
     {
         return [
-            'comment' => 'required',
-            'video_id' => 'required'
+            'comment'  => 'required',
+            'video_id' => 'required',
         ];
     }
 }
